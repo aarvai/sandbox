@@ -25,8 +25,8 @@ class AcsGui:
     def __init__(self, master):
 
         global deg, rad
-        deg = StringVar()
-        rad = StringVar()
+        deg = DoubleVar()
+        rad = DoubleVar()
 
         #print("Tkinter theme options are:")
         #print(ttk.Style().theme_names())
@@ -71,9 +71,10 @@ class AcsGui:
         self.degrees.config(state=DISABLED)
 
     def l_to_r(self):
-        self.radians.delete(0)
-        self.radians.insert(0, deg+'rad')
+        self.radians.delete(0,END)
+        self.radians.insert(0,deg.get()*3.14159/180)
         self.radians.config(state='readonly')
+        self.degrees.config(state='readonly')
 
 root = Tk()
 
