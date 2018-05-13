@@ -47,7 +47,7 @@ class AcsGui:
         self.l2 = ttk.Label(text="Radians")
         self.l2.pack(side=LEFT)
 
-        self.buttonltor = ttk.Button(frame, text="-->", command=self.l_to_r)
+        self.buttonltor = ttk.Button(frame, text="▶", command=self.l_to_r)
         self.buttonltor.pack(side=LEFT)
 
         self.radians = ttk.Entry(frame, width=20, textvariable=rad)
