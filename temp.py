@@ -34,38 +34,33 @@ class AcsGui:
         #print(ttk.Style().theme_use())
         ttk.Style().theme_use('vista')
 
-        frame = ttk.Frame(master)
-        frame.pack()
-
         self.l1 = ttk.Label(text="Degrees")
-        self.l1.pack(side=LEFT)
+        self.l1.grid(row=0, column=0)
 
-        self.degrees = ttk.Entry(frame, width=20, textvariable=deg)
-        self.degrees.pack(side=LEFT)
+        self.degrees = ttk.Entry(master, width=20, textvariable=deg)
+        self.degrees.grid(row=1, column=0)
         self.degrees.focus_set()
 
+        self.buttonltor = ttk.Button(master, text="▶", command=self.l_to_r)
+        self.buttonltor.grid(row=0, column=1)
+
         self.l2 = ttk.Label(text="Radians")
-        self.l2.pack(side=LEFT)
+        self.l2.grid(row=0, column=2)
 
-        self.buttonltor = ttk.Button(frame, text="▶", command=self.l_to_r)
-        self.buttonltor.pack(side=LEFT)
+        self.radians = ttk.Entry(master, width=20, textvariable=rad)
+        self.radians.grid(row=1, column=2)
 
-        self.radians = ttk.Entry(frame, width=20, textvariable=rad)
-        self.radians.pack(side=LEFT)
+        self.button1 = ttk.Button(master, text="Print Value", command=self.print_value)
+        self.button1.grid(row=0, column=3, rowspan=2)
 
-        self.button1 = ttk.Button(frame, text="Print Value", command=self.print_value)
-        self.button1.pack(side=LEFT)
+        self.button2 = ttk.Button(master, text="Gray it out", command=self.gray_it_out)
+        self.button2.grid(row=0, column=4, rowspan=2)
 
-        self.button2 = ttk.Button(frame, text="Gray it out", command=self.gray_it_out)
-        self.button2.pack(side=LEFT)
-
-        self.button3 = ttk.Button(frame, text="QUIT", command=frame.quit)
-        self.button3.pack(side=LEFT)
+        self.button3 = ttk.Button(master, text="QUIT", command=master.quit)
+        self.button3.grid(row=0, column=5, rowspan=2)
 
     def print_value(self):
-        print("hi there")
-        #print(self.enter_value.get())
-        print(v.get())
+        print(rad.get())
 
     def gray_it_out(self):
         self.degrees.config(state=DISABLED)
