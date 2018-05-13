@@ -10,24 +10,26 @@ from tkinter import *
 class App:
 
     def __init__(self, master):
-	    v = StringVar()
-		
+        global v
+        v = StringVar()
+
         frame = Frame(master)
         frame.pack()
 
-        self.button = Button(frame, text="Print Value", fg="red", command=self.print_value)
-        self.button.pack(side=LEFT)
-
         self.enter_value = Entry(frame, width=50, textvariable=v)
         self.enter_value.pack(side=LEFT)
+        self.enter_value.focus_set()
+
+        self.button = Button(frame, text="Print Value", fg="red", command=self.print_value)
+        self.button.pack(side=LEFT)
 		
-	def print_value(self):
+    def print_value(self):
         print("hi there")
-        print(v)
+        #print(self.enter_value.get())
+        print(v.get())
 		
 root = Tk()
 
 app = App(root)
 
 root.mainloop()
-root.destroy() # optional; see description below

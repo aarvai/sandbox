@@ -23,4 +23,4 @@ root = Tk()
 app = App(root)
 
 root.mainloop()
-root.destroy() # optional; see description below
+#root.destroy() # optional; see description below
