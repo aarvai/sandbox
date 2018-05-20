@@ -5,8 +5,9 @@ Created on Sat May 12 13:08:54 2018
 @author: aarvai
 """
 
-from tkinter import *
-from tkinter import Button, Entry
+import numpy as np
+from tkinter import Tk
+from tkinter import Button, Entry, DoubleVar, END
 from tkinter import ttk
 
 #Select tkinter style
@@ -24,9 +25,23 @@ class AcsGui:
 
     def __init__(self, master):
 
-        global deg, rad
-        deg = DoubleVar()
-        rad = DoubleVar()
+        global ephSunPosX, ephSunPosY, ephSunPosZ
+        global ephJwstPosX, ephJwstPosY, ephJwstPosZ
+        global ephSunVecX, ephSunVecY, ephSunVecZ
+        global ephSunVecNormX, ephSunVecNormY, ephSunVecNormZ
+
+        ephSunPosX = DoubleVar()
+        ephSunPosY = DoubleVar()
+        ephSunPosZ = DoubleVar()
+        ephJwstPosX = DoubleVar()
+        ephJwstPosY = DoubleVar()
+        ephJwstPosZ = DoubleVar()
+        ephSunVecX = DoubleVar()
+        ephSunVecY = DoubleVar()
+        ephSunVecZ = DoubleVar()
+        ephSunVecNormX = DoubleVar()
+        ephSunVecNormY = DoubleVar()
+        ephSunVecNormZ = DoubleVar()
 
         #print("Tkinter theme options are:")
         #print(ttk.Style().theme_names())
@@ -34,42 +49,167 @@ class AcsGui:
         #print(ttk.Style().theme_use())
         ttk.Style().theme_use('vista')
 
-        self.l1 = ttk.Label(text="Degrees")
-        self.l1.grid(row=0, column=0)
+        #Title
+        self.title = ttk.Label(text="ACS Conversion Tool")
+        self.title.grid(row=0, column=0, columnspan=10)
 
-        self.degrees = ttk.Entry(master, width=20, textvariable=deg)
-        self.degrees.grid(row=1, column=0)
-        self.degrees.focus_set()
+        #Ephemeris Section
+        self.ephemLabel = ttk.Label(text="Ephemeris")
+        self.ephemLabel.grid(row=1, column=0, columnspan=10)
 
-        self.buttonltor = ttk.Button(master, text="▶", command=self.l_to_r)
-        self.buttonltor.grid(row=0, column=1)
+        #Sun and JWST Positions
+        self.ephPosLabel = ttk.Label(text="Positions (ECI, km)")
+        self.ephPosLabel.grid(row=2, column=0, columnspan=3)
 
-        self.l2 = ttk.Label(text="Radians")
-        self.l2.grid(row=0, column=2)
+        self.ephPosXLabel = ttk.Label(text="x")
+        self.ephPosXLabel.grid(row=4, column=0)
 
-        self.radians = ttk.Entry(master, width=20, textvariable=rad)
-        self.radians.grid(row=1, column=2)
+        self.ephPosYLabel = ttk.Label(text="y")
+        self.ephPosYLabel.grid(row=5, column=0)
 
-        self.button1 = ttk.Button(master, text="Print Value", command=self.print_value)
-        self.button1.grid(row=0, column=3, rowspan=2)
+        self.ephPosZLabel = ttk.Label(text="z")
+        self.ephPosZLabel.grid(row=6, column=0)
 
-        self.button2 = ttk.Button(master, text="Gray it out", command=self.gray_it_out)
-        self.button2.grid(row=0, column=4, rowspan=2)
+        self.ephSunLabel = ttk.Label(text="Sun")
+        self.ephSunLabel.grid(row=3, column=1)
 
-        self.button3 = ttk.Button(master, text="QUIT", command=master.quit)
-        self.button3.grid(row=0, column=5, rowspan=2)
+        self.ephSunPosXEntry = ttk.Entry(master, width=20, textvariable=ephSunPosX)
+        self.ephSunPosXEntry.grid(row=4, column=1)
+        self.ephSunPosXEntry.focus_set()
 
-    def print_value(self):
-        print(rad.get())
+        self.ephSunPosYEntry = ttk.Entry(master, width=20, textvariable=ephSunPosY)
+        self.ephSunPosYEntry.grid(row=5, column=1)
 
-    def gray_it_out(self):
-        self.degrees.config(state=DISABLED)
+        self.ephSunPosZEntry = ttk.Entry(master, width=20, textvariable=ephSunPosZ)
+        self.ephSunPosZEntry.grid(row=6, column=1)
 
-    def l_to_r(self):
-        self.radians.delete(0,END)
-        self.radians.insert(0,deg.get()*3.14159/180)
-        self.radians.config(state='readonly')
-        self.degrees.config(state='readonly')
+        self.ephJwstLabel = ttk.Label(text="JWST")
+        self.ephJwstLabel.grid(row=3, column=2)
+
+        self.ephJwstPosXEntry = ttk.Entry(master, width=20, textvariable=ephJwstPosX)
+        self.ephJwstPosXEntry.grid(row=4, column=2)
+
+        self.ephJwstPosYEntry = ttk.Entry(master, width=20, textvariable=ephJwstPosY)
+        self.ephJwstPosYEntry.grid(row=5, column=2)
+
+        self.ephJwstPosZEntry = ttk.Entry(master, width=20, textvariable=ephJwstPosZ)
+        self.ephJwstPosZEntry.grid(row=6, column=2)
+
+        self.ephPosToVecButton = ttk.Button(master, text="▶", command=self.ephPosToVec)
+        self.ephPosToVecButton.grid(row=4, column=3)
+
+        #Sun Vector
+        self.ephSunVecLabel = ttk.Label(text="Sun Vector")
+        self.ephSunVecLabel.grid(row=2, column=4, columnspan=2)
+
+        self.ephSunVecUnitLabel = ttk.Label(text="(ECI, km)")
+        self.ephSunVecUnitLabel.grid(row=3, column=4, columnspan=2)
+
+        self.ephSunVecXEntry = ttk.Entry(master, width=20, textvariable=ephSunVecX)
+        self.ephSunVecXEntry.grid(row=4, column=5)
+
+        self.ephSunVecYEntry = ttk.Entry(master, width=20, textvariable=ephSunVecY)
+        self.ephSunVecYEntry.grid(row=5, column=5)
+
+        self.ephSunVecZEntry = ttk.Entry(master, width=20, textvariable=ephSunVecZ)
+        self.ephSunVecZEntry.grid(row=6, column=5)
+
+        self.ephVecToNormVecButton = ttk.Button(master, text="▶", command=self.ephVecToNormVec)
+        self.ephVecToNormVecButton.grid(row=4, column=6)
+
+        #Normalized Sun Vector
+        self.ephSunVecNormLabel = ttk.Label(text="Sun Vector Normalized")
+        self.ephSunVecNormLabel.grid(row=2, column=7, columnspan=2)
+
+        self.ephSunVecNormUnitLabel = ttk.Label(text="(ECI)")
+        self.ephSunVecNormUnitLabel.grid(row=3, column=7, columnspan=2)
+
+        self.ephSunVecNormXEntry = ttk.Entry(master, width=20, textvariable=ephSunVecNormX)
+        self.ephSunVecNormXEntry.grid(row=4, column=8)
+
+        self.ephSunVecNormYEntry = ttk.Entry(master, width=20, textvariable=ephSunVecNormY)
+        self.ephSunVecNormYEntry.grid(row=5, column=8)
+
+        self.ephSunVecNormZEntry = ttk.Entry(master, width=20, textvariable=ephSunVecNormZ)
+        self.ephSunVecNormZEntry.grid(row=6, column=8)
+
+#        self.l2 = ttk.Label(text="Radians")
+#        self.l2.grid(row=0, column=2)
+
+#        self.radians = ttk.Entry(master, width=20, textvariable=rad)
+#        self.radians.grid(row=1, column=2)
+
+#        self.button1 = ttk.Button(master, text="Print Value", command=self.print_value)
+#        self.button1.grid(row=0, column=3, rowspan=2)
+
+#        self.button2 = ttk.Button(master, text="Gray it out", command=self.gray_it_out)
+#        self.button2.grid(row=0, column=4, rowspan=2)
+
+#        self.button3 = ttk.Button(master, text="QUIT", command=master.quit)
+#        self.button3.grid(row=0, column=5, rowspan=2)
+
+    def ephPosToVec(self):
+
+        #clear sunVec
+        self.ephSunVecXEntry.delete(0,END)
+        self.ephSunVecYEntry.delete(0,END)
+        self.ephSunVecZEntry.delete(0,END)
+
+        #sun vector = sun position - JWST position
+        self.ephSunVecXEntry.insert(0,ephSunPosX.get()-ephJwstPosX.get())
+        self.ephSunVecYEntry.insert(0,ephSunPosY.get()-ephJwstPosY.get())
+        self.ephSunVecZEntry.insert(0,ephSunPosZ.get()-ephJwstPosZ.get())
+
+        #disable sun position
+        self.ephSunPosXEntry.config(state='readonly')
+        self.ephSunPosYEntry.config(state='readonly')
+        self.ephSunPosZEntry.config(state='readonly')
+
+        # disable JWST position
+        self.ephJwstPosXEntry.config(state='readonly')
+        self.ephJwstPosYEntry.config(state='readonly')
+        self.ephJwstPosZEntry.config(state='readonly')
+
+        # disable sun vector
+        self.ephSunVecXEntry.config(state='readonly')
+        self.ephSunVecYEntry.config(state='readonly')
+        self.ephSunVecZEntry.config(state='readonly')
+
+    def ephVecToNormVec(self):
+
+        #clear sunVec
+        self.ephSunVecNormXEntry.delete(0,END)
+        self.ephSunVecNormYEntry.delete(0,END)
+        self.ephSunVecNormZEntry.delete(0,END)
+
+        #normalize sun vector
+        ephSunVec = np.array([ephSunVecX.get(), ephSunVecY.get(), ephSunVecZ.get()])
+        ephSunVecNorm = ephSunVec / np.linalg.norm(ephSunVec)
+        self.ephSunVecNormXEntry.insert(0,ephSunVecNorm[0])
+        self.ephSunVecNormYEntry.insert(0,ephSunVecNorm[1])
+        self.ephSunVecNormZEntry.insert(0,ephSunVecNorm[2])
+
+        # disable sun vector
+        self.ephSunVecXEntry.config(state='readonly')
+        self.ephSunVecYEntry.config(state='readonly')
+        self.ephSunVecZEntry.config(state='readonly')
+
+        # disable normalized sun vector
+        self.ephSunVecNormXEntry.config(state='readonly')
+        self.ephSunVecNormYEntry.config(state='readonly')
+        self.ephSunVecNormZEntry.config(state='readonly')
+
+#    def print_value(self):
+#        print(rad.get())
+
+#    def gray_it_out(self):
+#        self.degrees.config(state=DISABLED)
+
+#    def l_to_r(self):
+#        self.radians.delete(0,END)
+#        self.radians.insert(0,deg.get()*3.14159/180)
+#        self.radians.config(state='readonly')
+#        self.degrees.config(state='readonly')
 
 root = Tk()
 
