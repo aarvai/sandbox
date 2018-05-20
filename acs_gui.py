@@ -48,13 +48,16 @@ class AcsGui:
         # print("Current Tkinter theme:")
         # print(ttk.Style().theme_use())
         # ttk.Style().theme_use('vista')
+        print(ttk.Style().lookup("TButton", "font"))
+
+        ttk.Style().configure("TLabel", padding=2)
 
         # Title
         self.title = ttk.Label(text="ACS Conversion Tool")
         self.title.grid(row=0, column=0, columnspan=10)
 
         # Define top-level frames
-        self.ephFrame = ttk.Frame(master,relief='raised')
+        self.ephFrame = ttk.Frame(master, relief='raised')
         self.ephFrame.grid(row=1,column=0)
 
         # Ephemeris Section------------------------------------------------------------
