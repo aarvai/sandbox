@@ -53,92 +53,108 @@ class AcsGui:
         self.title = ttk.Label(text="ACS Conversion Tool")
         self.title.grid(row=0, column=0, columnspan=10)
 
-        #Ephemeris Section
-        self.ephemLabel = ttk.Label(text="Ephemeris")
-        self.ephemLabel.grid(row=1, column=0, columnspan=10)
+        #Define top-level frames
+        self.ephFrame = ttk.Frame(master,relief='raised')
+        self.ephFrame.grid(row=1,column=0)
 
-        #Sun and JWST Positions
-        self.ephPosLabel = ttk.Label(text="Positions (ECI, km)")
-        self.ephPosLabel.grid(row=2, column=0, columnspan=3)
+        #Ephemeris Section------------------------------------------------------------
+        #Ephemeris Title
+        self.ephemLabel = ttk.Label(self.ephFrame, text="Ephemeris")
+        self.ephemLabel.grid(row=0, column=0, columnspan=6)
 
-        self.ephPosXLabel = ttk.Label(text="x")
-        self.ephPosXLabel.grid(row=4, column=0)
+        #Ephemeris Position Frame
+        self.ephPosFrame = ttk.Frame(self.ephFrame,relief='groove')
+        self.ephPosFrame.grid(row=1,column=0)
 
-        self.ephPosYLabel = ttk.Label(text="y")
-        self.ephPosYLabel.grid(row=5, column=0)
+        #Button to Convert Positions to Sun Vector
+        self.ephPosToVecButton = ttk.Button(self.ephFrame, text="▶", command=self.ephPosToVec)
+        self.ephPosToVecButton.grid(row=1, column=1)
 
-        self.ephPosZLabel = ttk.Label(text="z")
-        self.ephPosZLabel.grid(row=6, column=0)
-
-        self.ephSunLabel = ttk.Label(text="Sun")
-        self.ephSunLabel.grid(row=3, column=1)
-
-        self.ephSunPosXEntry = ttk.Entry(master, width=20, textvariable=ephSunPosX)
-        self.ephSunPosXEntry.grid(row=4, column=1)
-        self.ephSunPosXEntry.focus_set()
-
-        self.ephSunPosYEntry = ttk.Entry(master, width=20, textvariable=ephSunPosY)
-        self.ephSunPosYEntry.grid(row=5, column=1)
-
-        self.ephSunPosZEntry = ttk.Entry(master, width=20, textvariable=ephSunPosZ)
-        self.ephSunPosZEntry.grid(row=6, column=1)
-
-        self.ephJwstLabel = ttk.Label(text="JWST")
-        self.ephJwstLabel.grid(row=3, column=2)
-
-        self.ephJwstPosXEntry = ttk.Entry(master, width=20, textvariable=ephJwstPosX)
-        self.ephJwstPosXEntry.grid(row=4, column=2)
-
-        self.ephJwstPosYEntry = ttk.Entry(master, width=20, textvariable=ephJwstPosY)
-        self.ephJwstPosYEntry.grid(row=5, column=2)
-
-        self.ephJwstPosZEntry = ttk.Entry(master, width=20, textvariable=ephJwstPosZ)
-        self.ephJwstPosZEntry.grid(row=6, column=2)
-
-        #Convert Positions to Sun Vector
-        self.ephPosToVecButton = ttk.Button(master, text="▶", command=self.ephPosToVec)
-        self.ephPosToVecButton.grid(row=4, column=3)
-
-        #Sun Vector
-        self.ephSunVecLabel = ttk.Label(text="Sun Vector")
-        self.ephSunVecLabel.grid(row=2, column=4, columnspan=2)
-
-        self.ephSunVecUnitLabel = ttk.Label(text="(ECI, km)")
-        self.ephSunVecUnitLabel.grid(row=3, column=4, columnspan=2)
-
-        self.ephSunVecXEntry = ttk.Entry(master, width=20, textvariable=ephSunVecX)
-        self.ephSunVecXEntry.grid(row=4, column=5)
-
-        self.ephSunVecYEntry = ttk.Entry(master, width=20, textvariable=ephSunVecY)
-        self.ephSunVecYEntry.grid(row=5, column=5)
-
-        self.ephSunVecZEntry = ttk.Entry(master, width=20, textvariable=ephSunVecZ)
-        self.ephSunVecZEntry.grid(row=6, column=5)
+        #Ephemeris Sun Vector Frame
+        self.ephSunVecFrame = ttk.Frame(self.ephFrame,relief='groove')
+        self.ephSunVecFrame.grid(row=1,column=2)
 
         #Convert sun vector to normalized sun vector
-        self.ephVecToNormVecButton = ttk.Button(master, text="▶", command=self.ephVecToNormVec)
-        self.ephVecToNormVecButton.grid(row=4, column=6)
+        self.ephVecToNormVecButton = ttk.Button(self.ephFrame, text="▶", command=self.ephVecToNormVec)
+        self.ephVecToNormVecButton.grid(row=1, column=3)
 
-        #Normalized Sun Vector
-        self.ephSunVecNormLabel = ttk.Label(text="Sun Vector Normalized")
-        self.ephSunVecNormLabel.grid(row=2, column=7, columnspan=2)
-
-        self.ephSunVecNormUnitLabel = ttk.Label(text="(ECI)")
-        self.ephSunVecNormUnitLabel.grid(row=3, column=7, columnspan=2)
-
-        self.ephSunVecNormXEntry = ttk.Entry(master, width=20, textvariable=ephSunVecNormX)
-        self.ephSunVecNormXEntry.grid(row=4, column=8)
-
-        self.ephSunVecNormYEntry = ttk.Entry(master, width=20, textvariable=ephSunVecNormY)
-        self.ephSunVecNormYEntry.grid(row=5, column=8)
-
-        self.ephSunVecNormZEntry = ttk.Entry(master, width=20, textvariable=ephSunVecNormZ)
-        self.ephSunVecNormZEntry.grid(row=6, column=8)
+        #Ephemeris Sun Vector Frame
+        self.ephSunVecNormFrame = ttk.Frame(self.ephFrame,relief='groove')
+        self.ephSunVecNormFrame.grid(row=1,column=4)
 
         #Clear ephem
-        self.ephClearButton = ttk.Button(master, text="Clear", command=self.ephClear)
-        self.ephClearButton.grid(row=4, column=9)
+        self.ephClearButton = ttk.Button(self.ephFrame, text="Clear", command=self.ephClear)
+        self.ephClearButton.grid(row=1, column=5)
 
+        #Ephemeris Position Frame - Details
+        self.ephPosLabel = ttk.Label(self.ephPosFrame, text="Positions (ECI, km)")
+        self.ephPosLabel.grid(row=0, column=0, columnspan=3)
+
+        self.ephPosXLabel = ttk.Label(self.ephPosFrame, text="x")
+        self.ephPosXLabel.grid(row=2, column=0)
+
+        self.ephPosYLabel = ttk.Label(self.ephPosFrame, text="y")
+        self.ephPosYLabel.grid(row=3, column=0)
+
+        self.ephPosZLabel = ttk.Label(self.ephPosFrame, text="z")
+        self.ephPosZLabel.grid(row=4, column=0)
+
+        self.ephSunLabel = ttk.Label(self.ephPosFrame, text="Sun")
+        self.ephSunLabel.grid(row=1, column=1)
+
+        self.ephSunPosXEntry = ttk.Entry(self.ephPosFrame, width=20, textvariable=ephSunPosX)
+        self.ephSunPosXEntry.grid(row=2, column=1)
+        self.ephSunPosXEntry.focus_set()
+
+        self.ephSunPosYEntry = ttk.Entry(self.ephPosFrame, width=20, textvariable=ephSunPosY)
+        self.ephSunPosYEntry.grid(row=3, column=1)
+
+        self.ephSunPosZEntry = ttk.Entry(self.ephPosFrame, width=20, textvariable=ephSunPosZ)
+        self.ephSunPosZEntry.grid(row=4, column=1)
+
+        self.ephJwstLabel = ttk.Label(self.ephPosFrame, text="JWST")
+        self.ephJwstLabel.grid(row=1, column=2)
+
+        self.ephJwstPosXEntry = ttk.Entry(self.ephPosFrame, width=20, textvariable=ephJwstPosX)
+        self.ephJwstPosXEntry.grid(row=2, column=2)
+
+        self.ephJwstPosYEntry = ttk.Entry(self.ephPosFrame, width=20, textvariable=ephJwstPosY)
+        self.ephJwstPosYEntry.grid(row=3, column=2)
+
+        self.ephJwstPosZEntry = ttk.Entry(self.ephPosFrame, width=20, textvariable=ephJwstPosZ)
+        self.ephJwstPosZEntry.grid(row=4, column=2)
+
+        #Ephemeris Sun Vector Frame - Details
+        self.ephSunVecLabel = ttk.Label(self.ephSunVecFrame, text="Sun Vector")
+        self.ephSunVecLabel.grid(row=0, column=0, columnspan=2)
+
+        self.ephSunVecUnitLabel = ttk.Label(self.ephSunVecFrame, text="(ECI, km)")
+        self.ephSunVecUnitLabel.grid(row=1, column=0, columnspan=2)
+
+        self.ephSunVecXEntry = ttk.Entry(self.ephSunVecFrame, width=20, textvariable=ephSunVecX)
+        self.ephSunVecXEntry.grid(row=2, column=1)
+
+        self.ephSunVecYEntry = ttk.Entry(self.ephSunVecFrame, width=20, textvariable=ephSunVecY)
+        self.ephSunVecYEntry.grid(row=3, column=1)
+
+        self.ephSunVecZEntry = ttk.Entry(self.ephSunVecFrame, width=20, textvariable=ephSunVecZ)
+        self.ephSunVecZEntry.grid(row=4, column=1)
+
+        #Ephemeris Normalized Sun Vector Frame - Details
+        self.ephSunVecNormLabel = ttk.Label(self.ephSunVecNormFrame, text="Sun Vector Normalized")
+        self.ephSunVecNormLabel.grid(row=0, column=0, columnspan=2)
+
+        self.ephSunVecNormUnitLabel = ttk.Label(self.ephSunVecNormFrame, text="(ECI)")
+        self.ephSunVecNormUnitLabel.grid(row=1, column=0, columnspan=2)
+
+        self.ephSunVecNormXEntry = ttk.Entry(self.ephSunVecNormFrame, width=20, textvariable=ephSunVecNormX)
+        self.ephSunVecNormXEntry.grid(row=2, column=1)
+
+        self.ephSunVecNormYEntry = ttk.Entry(self.ephSunVecNormFrame, width=20, textvariable=ephSunVecNormY)
+        self.ephSunVecNormYEntry.grid(row=3, column=1)
+
+        self.ephSunVecNormZEntry = ttk.Entry(self.ephSunVecNormFrame, width=20, textvariable=ephSunVecNormZ)
+        self.ephSunVecNormZEntry.grid(row=4, column=1)
 
 #        self.l2 = ttk.Label(text="Radians")
 #        self.l2.grid(row=0, column=2)
