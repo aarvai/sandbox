@@ -95,6 +95,7 @@ class AcsGui:
         self.ephJwstPosZEntry = ttk.Entry(master, width=20, textvariable=ephJwstPosZ)
         self.ephJwstPosZEntry.grid(row=6, column=2)
 
+        #Convert Positions to Sun Vector
         self.ephPosToVecButton = ttk.Button(master, text="▶", command=self.ephPosToVec)
         self.ephPosToVecButton.grid(row=4, column=3)
 
@@ -114,6 +115,7 @@ class AcsGui:
         self.ephSunVecZEntry = ttk.Entry(master, width=20, textvariable=ephSunVecZ)
         self.ephSunVecZEntry.grid(row=6, column=5)
 
+        #Convert sun vector to normalized sun vector
         self.ephVecToNormVecButton = ttk.Button(master, text="▶", command=self.ephVecToNormVec)
         self.ephVecToNormVecButton.grid(row=4, column=6)
 
@@ -132,6 +134,11 @@ class AcsGui:
 
         self.ephSunVecNormZEntry = ttk.Entry(master, width=20, textvariable=ephSunVecNormZ)
         self.ephSunVecNormZEntry.grid(row=6, column=8)
+
+        #Clear ephem
+        self.ephClearButton = ttk.Button(master, text="Clear", command=self.ephClear)
+        self.ephClearButton.grid(row=4, column=9)
+
 
 #        self.l2 = ttk.Label(text="Radians")
 #        self.l2.grid(row=0, column=2)
@@ -198,6 +205,39 @@ class AcsGui:
         self.ephSunVecNormXEntry.config(state='readonly')
         self.ephSunVecNormYEntry.config(state='readonly')
         self.ephSunVecNormZEntry.config(state='readonly')
+
+    def ephClear(self):
+
+        #re-enable all ephemeris values
+        self.ephJwstPosXEntry.config(state='Normal')
+        self.ephJwstPosYEntry.config(state='Normal')
+        self.ephJwstPosZEntry.config(state='Normal')
+        self.ephSunPosXEntry.config(state='Normal')
+        self.ephSunPosYEntry.config(state='Normal')
+        self.ephSunPosZEntry.config(state='Normal')
+        self.ephSunVecXEntry.config(state='Normal')
+        self.ephSunVecYEntry.config(state='Normal')
+        self.ephSunVecZEntry.config(state='Normal')
+        self.ephSunVecNormXEntry.config(state='Normal')
+        self.ephSunVecNormYEntry.config(state='Normal')
+        self.ephSunVecNormZEntry.config(state='Normal')
+
+        #clear all ephemeris values
+        self.ephJwstPosXEntry.delete(0,END)
+        self.ephJwstPosYEntry.delete(0,END)
+        self.ephJwstPosZEntry.delete(0,END)
+        self.ephSunPosXEntry.delete(0,END)
+        self.ephSunPosYEntry.delete(0,END)
+        self.ephSunPosZEntry.delete(0,END)
+        self.ephSunVecXEntry.delete(0,END)
+        self.ephSunVecYEntry.delete(0,END)
+        self.ephSunVecZEntry.delete(0,END)
+        self.ephSunVecNormXEntry.delete(0,END)
+        self.ephSunVecNormYEntry.delete(0,END)
+        self.ephSunVecNormZEntry.delete(0,END)
+
+        #Set the focus to the first ephemeris value
+        self.ephSunPosXEntry.focus_set()
 
 #    def print_value(self):
 #        print(rad.get())
