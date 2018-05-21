@@ -185,21 +185,6 @@ class AcsGui:
         self.ephSunVecNormZEntry = ttk.Entry(self.ephSunVecNormFrame, width=10, textvariable=ephSunVecNormZ)
         self.ephSunVecNormZEntry.grid(row=4, column=1)
 
-#         self.l2 = ttk.Label(text="Radians")
-#         self.l2.grid(row=0, column=2)
-
-#         self.radians = ttk.Entry(master, width=10, textvariable=rad)
-#         self.radians.grid(row=1, column=2)
-
-#         self.button1 = ttk.Button(master, text="Print Value", command=self.print_value)
-#         self.button1.grid(row=0, column=3, rowspan=2)
-
-#         self.button2 = ttk.Button(master, text="Gray it out", command=self.gray_it_out)
-#         self.button2.grid(row=0, column=4, rowspan=2)
-
-#         self.button3 = ttk.Button(master, text="QUIT", command=master.quit)
-#         self.button3.grid(row=0, column=5, rowspan=2)
-
     def ephPosToVec(self):
 
         # clear sunVec
@@ -283,18 +268,6 @@ class AcsGui:
 
         # Set the focus to the first ephemeris value
         self.ephSunPosXEntry.focus_set()
-
-#     def print_value(self):
-#         print(rad.get())
-
-#     def gray_it_out(self):
-#         self.degrees.config(state=DISABLED)
-
-#     def l_to_r(self):
-#         self.radians.delete(0,END)
-#         self.radians.insert(0,deg.get()*3.14159/180)
-#         self.radians.config(state='readonly')
-#         self.degrees.config(state='readonly')
 
 root = Tk()
 root.title('ACS Conversion Tool')
