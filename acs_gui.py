@@ -7,7 +7,7 @@ Created on Sat May 12 13:08:54 2018
 
 import numpy as np
 from tkinter import Tk
-from tkinter import Button, Entry, DoubleVar, END
+from tkinter import Entry, DoubleVar, END, N, E, S, W
 from tkinter import ttk
 
 # Select tkinter style
@@ -50,57 +50,65 @@ class AcsGui:
         # ttk.Style().theme_use('vista')
         print(ttk.Style().lookup("TButton", "font"))
 
-        ttk.Style().configure("TLabel", padding=2)
+        #ttk.Style().configure("TLabel", padding=10)
+        #ttk.Style().configure("TEntry", padding=10)
+        #print(ttk.Style().element_options('TButton'))
 
         # Title
         self.title = ttk.Label(text="ACS Conversion Tool")
         self.title.grid(row=0, column=0, columnspan=10)
 
         # Define top-level frames
-        self.ephFrame = ttk.Frame(master, relief='raised')
-        self.ephFrame.grid(row=1,column=0)
+        self.ephFrame = ttk.Frame(master, relief='ridge')
+        self.ephFrame.grid(row=1, column=0, padx=10, pady=10, ipadx=10, ipady=10, sticky=E+W)
 
         # Ephemeris Section------------------------------------------------------------
         # Ephemeris Title
         self.ephemLabel = ttk.Label(self.ephFrame, text="Ephemeris")
-        self.ephemLabel.grid(row=0, column=0, columnspan=6)
+        self.ephemLabel.grid(row=0, column=0, columnspan=6, padx=280, pady=10)
 
         # Ephemeris Position Frame
         self.ephPosFrame = ttk.Frame(self.ephFrame, relief='groove')
-        self.ephPosFrame.grid(row=1,column=0)
+        self.ephPosFrame.grid(row=1, column=0, ipadx=10, ipady=10)
+        self.ephFrame.columnconfigure(0, weight=4)
 
         # Button to Convert Positions to Sun Vector
         self.ephPosToVecButton = ttk.Button(self.ephFrame, text="▶", width=2, command=self.ephPosToVec)
         self.ephPosToVecButton.grid(row=1, column=1)
+        self.ephFrame.columnconfigure(1, weight=1)
 
         # Ephemeris Sun Vector Frame
         self.ephSunVecFrame = ttk.Frame(self.ephFrame,relief='groove')
-        self.ephSunVecFrame.grid(row=1,column=2)
+        self.ephSunVecFrame.grid(row=1, column=2, ipadx=10, ipady=10)
+        self.ephFrame.columnconfigure(2, weight=2)
 
         # Convert sun vector to normalized sun vector
         self.ephVecToNormVecButton = ttk.Button(self.ephFrame, text="▶", width=2, command=self.ephVecToNormVec)
         self.ephVecToNormVecButton.grid(row=1, column=3)
+        self.ephFrame.columnconfigure(3, weight=1)
 
         # Ephemeris Sun Vector Frame
         self.ephSunVecNormFrame = ttk.Frame(self.ephFrame,relief='groove')
-        self.ephSunVecNormFrame.grid(row=1,column=4)
+        self.ephSunVecNormFrame.grid(row=1, column=4, ipady=10)
+        self.ephFrame.columnconfigure(4, weight=3)
 
         # Clear ephem
-        self.ephClearButton = ttk.Button(self.ephFrame, text="Clear", width=7, command=self.ephClear)
-        self.ephClearButton.grid(row=1, column=5)
+        self.ephClearButton = ttk.Button(self.ephFrame, text="Clear", width=5, command=self.ephClear)
+        self.ephClearButton.grid(row=1, column=5, padx=10)
+        self.ephFrame.columnconfigure(0, weight=4)
 
         # Ephemeris Position Frame - Details
         self.ephPosLabel = ttk.Label(self.ephPosFrame, text="Positions (ECI, km)")
-        self.ephPosLabel.grid(row=0, column=0, columnspan=3)
+        self.ephPosLabel.grid(row=0, column=0, columnspan=3, pady=5)
 
         self.ephPosXLabel = ttk.Label(self.ephPosFrame, text="x")
-        self.ephPosXLabel.grid(row=2, column=0)
+        self.ephPosXLabel.grid(row=2, column=0, padx=5)
 
         self.ephPosYLabel = ttk.Label(self.ephPosFrame, text="y")
-        self.ephPosYLabel.grid(row=3, column=0)
+        self.ephPosYLabel.grid(row=3, column=0, padx=5)
 
         self.ephPosZLabel = ttk.Label(self.ephPosFrame, text="z")
-        self.ephPosZLabel.grid(row=4, column=0)
+        self.ephPosZLabel.grid(row=4, column=0, padx=5)
 
         self.ephSunLabel = ttk.Label(self.ephPosFrame, text="Sun")
         self.ephSunLabel.grid(row=1, column=1)
@@ -129,19 +137,19 @@ class AcsGui:
 
         # Ephemeris Sun Vector Frame - Details
         self.ephSunVecLabel = ttk.Label(self.ephSunVecFrame, text="Sun Vector")
-        self.ephSunVecLabel.grid(row=0, column=0, columnspan=2)
+        self.ephSunVecLabel.grid(row=0, column=0, columnspan=2, pady=5)
 
         self.ephSunVecUnitLabel = ttk.Label(self.ephSunVecFrame, text="(ECI, km)")
         self.ephSunVecUnitLabel.grid(row=1, column=0, columnspan=2)
 
         self.ephSunVecXLabel = ttk.Label(self.ephSunVecFrame, text="x")
-        self.ephSunVecXLabel.grid(row=2, column=0)
+        self.ephSunVecXLabel.grid(row=2, column=0, padx=5)
 
         self.ephSunVecYLabel = ttk.Label(self.ephSunVecFrame, text="y")
-        self.ephSunVecYLabel.grid(row=3, column=0)
+        self.ephSunVecYLabel.grid(row=3, column=0, padx=5)
 
         self.ephSunVecZLabel = ttk.Label(self.ephSunVecFrame, text="z")
-        self.ephSunVecZLabel.grid(row=4, column=0)
+        self.ephSunVecZLabel.grid(row=4, column=0, padx=5)
 
         self.ephSunVecXEntry = ttk.Entry(self.ephSunVecFrame, width=10, textvariable=ephSunVecX)
         self.ephSunVecXEntry.grid(row=2, column=1)
@@ -154,7 +162,7 @@ class AcsGui:
 
         # Ephemeris Normalized Sun Vector Frame - Details
         self.ephSunVecNormLabel = ttk.Label(self.ephSunVecNormFrame, text="Sun Vector Normalized")
-        self.ephSunVecNormLabel.grid(row=0, column=0, columnspan=2)
+        self.ephSunVecNormLabel.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
 
         self.ephSunVecNormUnitLabel = ttk.Label(self.ephSunVecNormFrame, text="(ECI, unitless)")
         self.ephSunVecNormUnitLabel.grid(row=1, column=0, columnspan=2)
