@@ -43,6 +43,17 @@ class AcsGui:
         ephSunVecNormY = DoubleVar()
         ephSunVecNormZ = DoubleVar()
 
+        att1RA = DoubleVar()
+        att1Dec = DoubleVar()
+        att1PA = DoubleVar()
+        att1Quat1 = DoubleVar()
+        att1Quat2 = DoubleVar()
+        att1Quat3 = DoubleVar()
+        att1Quat4 = DoubleVar()
+        att1SunRoll = DoubleVar()
+        att1SunPitch = DoubleVar()
+        att1SunYaw = DoubleVar()
+
         # print("Tkinter theme options are:")
         # print(ttk.Style().theme_names())
         # print("Current Tkinter theme:")
@@ -62,10 +73,16 @@ class AcsGui:
         self.ephFrame = ttk.Frame(master, relief='ridge')
         self.ephFrame.grid(row=1, column=0, padx=10, pady=10, ipadx=10, ipady=10, sticky=E+W)
 
-        # Ephemeris Section------------------------------------------------------------
+        self.att1Frame = ttk.Frame(master, relief='ridge')
+        self.att1Frame.grid(row=2, column=0, padx=10, pady=10, ipadx=10, ipady=10, sticky=E+W)
+
+        # Ephemeris Section---------------------------------------------------------------------------------------------
+
+        # Ephemeris Top Level Layout---------------------------------------
+
         # Ephemeris Title
         self.ephemLabel = ttk.Label(self.ephFrame, text="Ephemeris")
-        self.ephemLabel.grid(row=0, column=0, columnspan=6, padx=280, pady=10)
+        self.ephemLabel.grid(row=0, column=0, columnspan=3, padx=280, pady=10)
 
         # Ephemeris Position Frame
         self.ephPosFrame = ttk.Frame(self.ephFrame, relief='groove')
@@ -97,7 +114,7 @@ class AcsGui:
         self.ephClearButton.grid(row=1, column=5, padx=10)
         self.ephFrame.columnconfigure(0, weight=4)
 
-        # Ephemeris Position Frame - Details
+        # Ephemeris Position Frame - Details ------------------------------
         self.ephPosLabel = ttk.Label(self.ephPosFrame, text="Positions (ECI, km)")
         self.ephPosLabel.grid(row=0, column=0, columnspan=3, pady=5)
 
@@ -135,7 +152,7 @@ class AcsGui:
         self.ephJwstPosZEntry = ttk.Entry(self.ephPosFrame, width=10, textvariable=ephJwstPosZ)
         self.ephJwstPosZEntry.grid(row=4, column=2)
 
-        # Ephemeris Sun Vector Frame - Details
+        # Ephemeris Sun Vector Frame - Details-----------------------------
         self.ephSunVecLabel = ttk.Label(self.ephSunVecFrame, text="Sun Vector")
         self.ephSunVecLabel.grid(row=0, column=0, columnspan=2, pady=5)
 
@@ -160,7 +177,8 @@ class AcsGui:
         self.ephSunVecZEntry = ttk.Entry(self.ephSunVecFrame, width=10, textvariable=ephSunVecZ)
         self.ephSunVecZEntry.grid(row=4, column=1)
 
-        # Ephemeris Normalized Sun Vector Frame - Details
+        # Ephemeris Normalized Sun Vector Frame - Details------------------
+
         self.ephSunVecNormLabel = ttk.Label(self.ephSunVecNormFrame, text="Sun Vector Normalized")
         self.ephSunVecNormLabel.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
 
@@ -184,6 +202,140 @@ class AcsGui:
 
         self.ephSunVecNormZEntry = ttk.Entry(self.ephSunVecNormFrame, width=10, textvariable=ephSunVecNormZ)
         self.ephSunVecNormZEntry.grid(row=4, column=1)
+
+        # Attitude 1 Section--------------------------------------------------------------------------------------------
+
+        # Attitude 1 Top Level Layout--------------------------------------
+
+        # Attitude 1 Title
+        self.att1Label = ttk.Label(self.att1Frame, text="Attitude 1")
+        self.att1Label.grid(row=0, column=0, columnspan=3, padx=280, pady=10)
+
+        # Attitude 1 Celestial Frame
+        self.att1CelestFrame = ttk.Frame(self.att1Frame, relief='groove')
+        self.att1CelestFrame.grid(row=1, column=0, ipadx=10, ipady=10)
+        self.att1Frame.columnconfigure(2, weight=2)
+
+        # Attitude 1 Button 1 Frame
+        self.att1But1Frame = ttk.Frame(self.att1Frame)
+        self.att1But1Frame.grid(row=1, column=1, ipadx=10, ipady=10)
+        self.att1Frame.columnconfigure(1, weight=4)
+
+        # Attitude 1 Quaternion Frame
+        self.att1QuatFrame = ttk.Frame(self.att1Frame, relief='groove')
+        self.att1QuatFrame.grid(row=1, column=2, ipadx=10, ipady=10)
+        self.att1Frame.columnconfigure(0, weight=4)
+
+        # Attitude 1 Button 2 Frame
+        self.att1But2Frame = ttk.Frame(self.att1Frame)
+        self.att1But2Frame.grid(row=1, column=3, ipadx=10, ipady=10)
+        self.att1Frame.columnconfigure(3, weight=4)
+
+        # Attitude 1 Celestial Frame
+        self.att1SunAngFrame = ttk.Frame(self.att1Frame, relief='groove')
+        self.att1SunAngFrame.grid(row=1, column=4, ipadx=10, ipady=10)
+        self.att1Frame.columnconfigure(4, weight=2)
+
+        # Clear att1
+        self.att1ClearButton = ttk.Button(self.att1Frame, text="Clear", width=5, command=self.att1Clear)
+        self.att1ClearButton.grid(row=1, column=5, padx=10)
+        self.att1Frame.columnconfigure(5, weight=4)
+
+        # Attitude 1 Celestial Frame - Details----------------------------
+        self.att1CelestLabel = ttk.Label(self.att1CelestFrame, text="Celestial")
+        self.att1CelestLabel.grid(row=0, column=0, columnspan=2, pady=5)
+
+        self.att1RALabel = ttk.Label(self.att1CelestFrame, text="RA")
+        self.att1RALabel.grid(row=1, column=0, padx=5)
+
+        self.att1DecLabel = ttk.Label(self.att1CelestFrame, text="Dec")
+        self.att1DecLabel.grid(row=2, column=0, padx=5)
+
+        self.att1PALabel = ttk.Label(self.att1CelestFrame, text="PA")
+        self.att1PALabel.grid(row=3, column=0, padx=5)
+
+        self.att1RAEntry = ttk.Entry(self.att1CelestFrame, width=10, textvariable=att1RA)
+        self.att1RAEntry.grid(row=1, column=1)
+
+        self.att1DecEntry = ttk.Entry(self.att1CelestFrame, width=10, textvariable=att1Dec)
+        self.att1DecEntry.grid(row=2, column=1)
+
+        self.att1PAEntry = ttk.Entry(self.att1CelestFrame, width=10, textvariable=att1PA)
+        self.att1PAEntry.grid(row=3, column=1)
+
+        # Attitude 1 Button 1 Frame - Details-----------------------------
+
+        # Button to Convert Celestial to Quaternion
+        self.att1CelestToQuatButton = ttk.Button(self.att1But1Frame, text="▶", width=2, command=self.att1CelestToQuat)
+        self.att1CelestToQuatButton.grid(row=1, column=1)
+
+        # Button to Convert Quaternion to Celestial
+        self.att1QuatToCelestButton = ttk.Button(self.att1But1Frame, text="◀", width=2, command=self.att1QuatToCelest)
+        self.att1QuatToCelestButton.grid(row=2, column=1)
+
+        # Attitude 1 Quaternion Frame - Details----------------------------
+        self.att1QuatLabel = ttk.Label(self.att1QuatFrame, text="Quaternion")
+        self.att1QuatLabel.grid(row=0, column=0, columnspan=2, pady=5)
+
+        self.att1Quat1Label = ttk.Label(self.att1QuatFrame, text="q1")
+        self.att1Quat1Label.grid(row=1, column=0, padx=5)
+
+        self.att1Quat2Label = ttk.Label(self.att1QuatFrame, text="q2")
+        self.att1Quat2Label.grid(row=2, column=0, padx=5)
+
+        self.att1Quat3Label = ttk.Label(self.att1QuatFrame, text="q3")
+        self.att1Quat3Label.grid(row=3, column=0, padx=5)
+
+        self.att1Quat4Label = ttk.Label(self.att1QuatFrame, text="q4")
+        self.att1Quat4Label.grid(row=4, column=0, padx=5)
+
+        self.att1QuatXEntry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat1)
+        self.att1QuatXEntry.grid(row=1, column=1)
+
+        self.att1QuatYEntry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat2)
+        self.att1QuatYEntry.grid(row=2, column=1)
+
+        self.att1QuatZEntry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat3)
+        self.att1QuatZEntry.grid(row=3, column=1)
+
+        self.att1QuatZEntry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat4)
+        self.att1QuatZEntry.grid(row=4, column=1)
+
+        # Attitude 1 Button 2 Frame - Details-----------------------------
+
+        # Button to Convert Celestial to Sun Angles
+        self.att1CelestToSunAngBut = ttk.Button(self.att1But2Frame, text="▶", width=2, command=self.att1QuatToSunAng)
+        self.att1CelestToSunAngBut.grid(row=1, column=1)
+
+        # Button to Convert Sun Angles to Celestial
+        self.att1CelestToSunAngBut = ttk.Button(self.att1But2Frame, text="◀", width=2, command=self.att1SunAngToQuat)
+        self.att1CelestToSunAngBut.grid(row=2, column=1)
+
+        # Attitude 1 Sun Angles Frame - Details---------------------------
+        self.att1SunAngLabel = ttk.Label(self.att1SunAngFrame, text="Sun Angles")
+        self.att1SunAngLabel.grid(row=0, column=0, columnspan=2, pady=5)
+
+        self.att1SunRollLabel = ttk.Label(self.att1SunAngFrame, text="Sun Roll")
+        self.att1SunRollLabel.grid(row=1, column=0, padx=5)
+
+        self.att1SunPitchLabel = ttk.Label(self.att1SunAngFrame, text="Sun Pitch")
+        self.att1SunPitchLabel.grid(row=2, column=0, padx=5)
+
+        self.att1SunYawLabel = ttk.Label(self.att1SunAngFrame, text="Sun Yaw")
+        self.att1SunYawLabel.grid(row=3, column=0, padx=5)
+
+        self.att1SunRollEntry = ttk.Entry(self.att1SunAngFrame, width=10, textvariable=att1SunRoll)
+        self.att1SunRollEntry.grid(row=1, column=1)
+
+        self.att1SunPitchEntry = ttk.Entry(self.att1SunAngFrame, width=10, textvariable=att1SunPitch)
+        self.att1SunPitchEntry.grid(row=2, column=1)
+
+        self.att1SunYawEntry = ttk.Entry(self.att1SunAngFrame, width=10, textvariable=att1SunYaw)
+        self.att1SunYawEntry.grid(row=3, column=1)
+        self.att1SunYawEntry.delete(0,END)
+        self.att1SunYawEntry.config(state='disable')
+
+    # End Layout----------------------------------------------------------------------------------------------------
 
     def ephPosToVec(self):
 
@@ -268,6 +420,21 @@ class AcsGui:
 
         # Set the focus to the first ephemeris value
         self.ephSunPosXEntry.focus_set()
+
+    def att1CelestToQuat(self):
+        print('hi')
+
+    def att1QuatToCelest(self):
+        print('hi')
+
+    def att1QuatToSunAng(self):
+        print('hi')
+
+    def att1SunAngToQuat(self):
+        print('hi')
+
+    def att1Clear(self):
+        print('hi')
 
 root = Tk()
 root.title('ACS Conversion Tool')
