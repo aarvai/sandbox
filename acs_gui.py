@@ -30,6 +30,14 @@ class AcsGui:
         global ephSunVecX, ephSunVecY, ephSunVecZ
         global ephSunVecNormX, ephSunVecNormY, ephSunVecNormZ
 
+        global att1RA, att1Dec, att1PA
+        global att1Quat1, att1Quat2, att1Quat3, att1Quat4
+        global att1SunRoll, att1SunPitch, att1SunYaw
+
+        global att2RA, att2Dec, att2PA
+        global att2Quat1, att2Quat2, att2Quat3, att2Quat4
+        global att2SunRoll, att2SunPitch, att2SunYaw
+        
         # Ephemeris Variables
         ephSunPosX = DoubleVar()
         ephSunPosY = DoubleVar()
@@ -92,6 +100,9 @@ class AcsGui:
 
         self.att2Frame = ttk.Frame(master, relief='ridge')
         self.att2Frame.grid(row=3, column=0, padx=10, pady=2, ipadx=20, ipady=2, sticky=E+W)
+
+        self.slewFrame = ttk.Frame(master, relief='ridge')
+        self.slewFrame.grid(row=4, column=0, padx=10, pady=2, ipadx=20, ipady=2, sticky=E+W)
 
         # Ephemeris Section---------------------------------------------------------------------------------------------
 
