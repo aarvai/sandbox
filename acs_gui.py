@@ -329,17 +329,17 @@ class AcsGui:
         self.att1Quat4Label = ttk.Label(self.att1QuatFrame, text="q4")
         self.att1Quat4Label.grid(row=4, column=0, padx=5)
 
-        self.att1QuatXEntry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat1)
-        self.att1QuatXEntry.grid(row=1, column=1)
+        self.att1Quat1Entry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat1)
+        self.att1Quat1Entry.grid(row=1, column=1)
 
-        self.att1QuatYEntry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat2)
-        self.att1QuatYEntry.grid(row=2, column=1)
+        self.att1Quat2Entry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat2)
+        self.att1Quat2Entry.grid(row=2, column=1)
 
-        self.att1QuatZEntry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat3)
-        self.att1QuatZEntry.grid(row=3, column=1)
+        self.att1Quat3Entry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat3)
+        self.att1Quat3Entry.grid(row=3, column=1)
 
-        self.att1QuatZEntry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat4)
-        self.att1QuatZEntry.grid(row=4, column=1)
+        self.att1Quat4Entry = ttk.Entry(self.att1QuatFrame, width=10, textvariable=att1Quat4)
+        self.att1Quat4Entry.grid(row=4, column=1)
 
         # Attitude 1 Button 2 Frame - Details-----------------------------
 
@@ -464,17 +464,17 @@ class AcsGui:
         self.att2Quat4Label = ttk.Label(self.att2QuatFrame, text="q4")
         self.att2Quat4Label.grid(row=4, column=0, padx=5)
 
-        self.att2QuatXEntry = ttk.Entry(self.att2QuatFrame, width=10, textvariable=att2Quat1)
-        self.att2QuatXEntry.grid(row=1, column=1)
+        self.att2Quat1Entry = ttk.Entry(self.att2QuatFrame, width=10, textvariable=att2Quat1)
+        self.att2Quat1Entry.grid(row=1, column=1)
 
-        self.att2QuatYEntry = ttk.Entry(self.att2QuatFrame, width=10, textvariable=att2Quat2)
-        self.att2QuatYEntry.grid(row=2, column=1)
+        self.att2Quat2Entry = ttk.Entry(self.att2QuatFrame, width=10, textvariable=att2Quat2)
+        self.att2Quat2Entry.grid(row=2, column=1)
 
-        self.att2QuatZEntry = ttk.Entry(self.att2QuatFrame, width=10, textvariable=att2Quat3)
-        self.att2QuatZEntry.grid(row=3, column=1)
+        self.att2Quat3Entry = ttk.Entry(self.att2QuatFrame, width=10, textvariable=att2Quat3)
+        self.att2Quat3Entry.grid(row=3, column=1)
 
-        self.att2QuatZEntry = ttk.Entry(self.att2QuatFrame, width=10, textvariable=att2Quat4)
-        self.att2QuatZEntry.grid(row=4, column=1)
+        self.att2Quat4Entry = ttk.Entry(self.att2QuatFrame, width=10, textvariable=att2Quat4)
+        self.att2Quat4Entry.grid(row=4, column=1)
 
         # Attitude 2 Button 2 Frame - Details-----------------------------
 
@@ -696,7 +696,33 @@ class AcsGui:
         print('hi')
 
     def att1Clear(self):
-        print('hi')
+
+        # re-enable all Attitude 1 values
+        self.att1RAEntry.config(state='Normal')
+        self.att1DecEntry.config(state='Normal')
+        self.att1PAEntry.config(state='Normal')
+        self.att1Quat1Entry.config(state='Normal')
+        self.att1Quat2Entry.config(state='Normal')
+        self.att1Quat3Entry.config(state='Normal')
+        self.att1Quat4Entry.config(state='Normal')
+        self.att1SunRollEntry.config(state='Normal')
+        self.att1SunPitchEntry.config(state='Normal')
+        self.att1SunYawEntry.config(state='Normal')
+
+        # clear all Attitude 1 values
+        self.att1RAEntry.delete(0, END)
+        self.att1DecEntry.delete(0, END)
+        self.att1PAEntry.delete(0, END)
+        self.att1Quat1Entry.delete(0, END)
+        self.att1Quat2Entry.delete(0, END)
+        self.att1Quat3Entry.delete(0, END)
+        self.att1Quat4Entry.delete(0, END)
+        self.att1SunRollEntry.delete(0, END)
+        self.att1SunPitchEntry.delete(0, END)
+        self.att1SunYawEntry.delete(0, END)
+
+        # Set the focus to the first Attitude 1 value
+        self.att1RAEntry.focus_set()
 
     def att2CelestToQuat(self):
         print('hi')
@@ -711,13 +737,61 @@ class AcsGui:
         print('hi')
 
     def att2Clear(self):
-        print('hi')
+
+        # re-enable all Attitude 1 values
+        self.att2RAEntry.config(state='Normal')
+        self.att2DecEntry.config(state='Normal')
+        self.att2PAEntry.config(state='Normal')
+        self.att2Quat1Entry.config(state='Normal')
+        self.att2Quat2Entry.config(state='Normal')
+        self.att2Quat3Entry.config(state='Normal')
+        self.att2Quat4Entry.config(state='Normal')
+        self.att2SunRollEntry.config(state='Normal')
+        self.att2SunPitchEntry.config(state='Normal')
+        self.att2SunYawEntry.config(state='Normal')
+
+        # clear all Attitude 1 values
+        self.att2RAEntry.delete(0, END)
+        self.att2DecEntry.delete(0, END)
+        self.att2PAEntry.delete(0, END)
+        self.att2Quat1Entry.delete(0, END)
+        self.att2Quat2Entry.delete(0, END)
+        self.att2Quat3Entry.delete(0, END)
+        self.att2Quat4Entry.delete(0, END)
+        self.att2SunRollEntry.delete(0, END)
+        self.att2SunPitchEntry.delete(0, END)
+        self.att2SunYawEntry.delete(0, END)
+
+        # Set the focus to the first Attitude 1 value
+        self.att2RAEntry.focus_set()
 
     def slew(self):
         print('hi')
 
     def slewClear(self):
-        print('hi')
+
+        # Re-enable all Slew values
+        self.slewMomEntry.config(state='Normal')
+        self.slewDurEntry.config(state='Normal')
+        self.slewAngRollEntry.config(state='Normal')
+        self.slewAngPitchEntry.config(state='Normal')
+        self.slewAngYawEntry.config(state='Normal')
+
+        # Clear all Slew values
+        self.slewMomEntry.delete(0, END)
+        self.slewDurEntry.delete(0, END)
+        self.slewAngRollEntry.delete(0, END)
+        self.slewAngPitchEntry.delete(0, END)
+        self.slewAngYawEntry.delete(0, END)
+
+        # Set the focus to the first Attitude 1 value
+        self.slewMomEntry.focus_set()
+
+        # Set outputs to read-only
+        self.slewDurEntry.config(state='readonly')
+        self.slewAngRollEntry.config(state='readonly')
+        self.slewAngPitchEntry.config(state='readonly')
+        self.slewAngYawEntry.config(state='readonly')
 
 root = Tk()
 root.title('ACS Conversion Tool')

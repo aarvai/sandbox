@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f7c94c6-70ea-4153-9a2b-1849d03d0397" name="Default" comment="Added Att1 and Att2 variables to global definition.">
+    <list default="true" id="2f7c94c6-70ea-4153-9a2b-1849d03d0397" name="Default" comment="Fixed padding.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/acs_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/acs_gui.py" afterDir="false" />
     </list>
@@ -35,8 +35,8 @@
       <file leaf-file-name="acs_gui.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/acs_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="718" column="17" selection-start-line="718" selection-start-column="17" selection-end-line="718" selection-end-column="17" />
+            <state relative-caret-position="272">
+              <caret line="784" column="29" selection-start-line="784" selection-start-column="29" selection-end-line="784" selection-end-column="29" />
               <folding>
                 <element signature="e#87#105#0" expanded="true" />
               </folding>
@@ -55,12 +55,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>master</find>
-      <find>ephPosFrame</find>
-      <find>width=15</find>
-      <find>sun</find>
-      <find>sunVec</find>
-      <find>0.0</find>
       <find>#</find>
       <find>,column</find>
       <find>sticky=</find>
@@ -78,13 +72,19 @@
       <find>padx=</find>
       <find>pady=</find>
       <find>1</find>
-      <find>att1</find>
       <find>Celest</find>
       <find>att2</find>
       <find>slewSunAng</find>
       <find>Mom</find>
       <find>att2SunAng</find>
       <find>att2Sun</find>
+      <find>pady</find>
+      <find>pady=10</find>
+      <find>pady=5</find>
+      <find>Total</find>
+      <find>print</find>
+      <find>att1</find>
+      <find>.config(state='Normal')</find>
     </findStrings>
     <replaceStrings>
       <replace>jwst</replace>
@@ -107,12 +107,15 @@
       <replace>att1Quat</replace>
       <replace>SunAng</replace>
       <replace>Label</replace>
-      <replace>att2</replace>
       <replace>Mom</replace>
       <replace>slew</replace>
       <replace>slewMom</replace>
       <replace>Dur</replace>
       <replace>slewAng</replace>
+      <replace>pady=2</replace>
+      <replace>.delete(0, END)</replace>
+      <replace>att2</replace>
+      <replace>delete(0, END)</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -376,7 +379,21 @@
       <option name="project" value="LOCAL" />
       <updated>1527014901553</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added Slew Frame.">
+      <created>1527017394326</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1527017394326</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fixed padding.">
+      <created>1527017996866</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1527017996866</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -386,9 +403,9 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23581682" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.31784007" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Python Console" order="8" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33188406" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.45507246" />
@@ -396,7 +413,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39941263" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -416,17 +433,18 @@
     <MESSAGE value="Improved spacing." />
     <MESSAGE value="Deleted unused code remnants." />
     <MESSAGE value="Added Attitude 1 (but padding is off)." />
-    <MESSAGE value="Fixed padding." />
     <MESSAGE value="Added Attitude 2." />
     <MESSAGE value="Added Att1 and Att2 variables to global definition." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Att1 and Att2 variables to global definition." />
+    <MESSAGE value="Added Slew Frame." />
+    <MESSAGE value="Fixed padding." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed padding." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/acs_gui.py</url>
-          <line>715</line>
+          <line>767</line>
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="1" />
@@ -635,8 +653,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/acs_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="718" column="17" selection-start-line="718" selection-start-column="17" selection-end-line="718" selection-end-column="17" />
+        <state relative-caret-position="272">
+          <caret line="784" column="29" selection-start-line="784" selection-start-column="29" selection-end-line="784" selection-end-column="29" />
           <folding>
             <element signature="e#87#105#0" expanded="true" />
           </folding>
