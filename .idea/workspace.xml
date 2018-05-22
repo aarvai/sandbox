@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f7c94c6-70ea-4153-9a2b-1849d03d0397" name="Default" comment="Syntax fixes.">
+    <list default="true" id="2f7c94c6-70ea-4153-9a2b-1849d03d0397" name="Default" comment="Added Att1 and Att2 variables to global definition.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/acs_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/acs_gui.py" afterDir="false" />
     </list>
@@ -32,20 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="frame_approach.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frame_approach.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2601">
-              <caret line="156" column="54" selection-end-line="274" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="acs_gui.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/acs_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="270" lean-forward="true" selection-start-line="270" selection-end-line="270" />
+            <state relative-caret-position="240">
+              <caret line="718" column="17" selection-start-line="718" selection-start-column="17" selection-end-line="718" selection-end-column="17" />
               <folding>
                 <element signature="e#87#105#0" expanded="true" />
               </folding>
@@ -64,12 +55,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>jwstPos</find>
-      <find>ephVec</find>
-      <find>ephSunVec</find>
-      <find>tk.</find>
-      <find>ephSunPos</find>
-      <find>.delete(0,END)</find>
       <find>master</find>
       <find>ephPosFrame</find>
       <find>width=15</find>
@@ -81,10 +66,25 @@
       <find>sticky=</find>
       <find>ttk.Frame</find>
       <find>Tk.</find>
-      <find>Entry</find>
       <find>_</find>
       <find>sticky</find>
       <find>padx</find>
+      <find>ephem</find>
+      <find>eph</find>
+      <find>ephSunVec</find>
+      <find>Entry</find>
+      <find>master,</find>
+      <find>='disable</find>
+      <find>padx=</find>
+      <find>pady=</find>
+      <find>1</find>
+      <find>att1</find>
+      <find>Celest</find>
+      <find>att2</find>
+      <find>slewSunAng</find>
+      <find>Mom</find>
+      <find>att2SunAng</find>
+      <find>att2Sun</find>
     </findStrings>
     <replaceStrings>
       <replace>jwst</replace>
@@ -103,6 +103,16 @@
       <replace>#</replace>
       <replace>, column</replace>
       <replace>Tk.Frame</replace>
+      <replace>att1</replace>
+      <replace>att1Quat</replace>
+      <replace>SunAng</replace>
+      <replace>Label</replace>
+      <replace>att2</replace>
+      <replace>Mom</replace>
+      <replace>slew</replace>
+      <replace>slewMom</replace>
+      <replace>Dur</replace>
+      <replace>slewAng</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -124,9 +134,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-13" />
-    <option name="width" value="2583" />
-    <option name="height" value="772" />
+    <option name="x" value="-14" />
+    <option name="width" value="2585" />
+    <option name="height" value="774" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -134,6 +144,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -145,7 +156,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -331,24 +341,59 @@
       <option name="project" value="LOCAL" />
       <updated>1526921931636</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Deleted unused code remnants.">
+      <created>1526922883108</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1526922883109</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added Attitude 1 (but padding is off).">
+      <created>1526928197898</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1526928197898</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fixed padding.">
+      <created>1527014159458</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1527014159458</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added Attitude 2.">
+      <created>1527014671033</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1527014671033</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added Att1 and Att2 variables to global definition.">
+      <created>1527014901553</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1527014901553</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2064" height="1128" extended-state="6" />
+    <frame x="-7" y="-7" width="1477" height="797" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23632812" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23581682" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.31784007" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3326791" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33188406" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.45507246" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39941263" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" visible="true" weight="0.0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="7" />
@@ -369,7 +414,23 @@
     <MESSAGE value="Syntax fixes and adjusted some widths." />
     <MESSAGE value="Attempts at adding padding." />
     <MESSAGE value="Improved spacing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved spacing." />
+    <MESSAGE value="Deleted unused code remnants." />
+    <MESSAGE value="Added Attitude 1 (but padding is off)." />
+    <MESSAGE value="Fixed padding." />
+    <MESSAGE value="Added Attitude 2." />
+    <MESSAGE value="Added Att1 and Att2 variables to global definition." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Att1 and Att2 variables to global definition." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/acs_gui.py</url>
+          <line>715</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/themes.py" />
@@ -564,13 +625,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scratch.py" />
     <entry file="file://$PROJECT_DIR$/temp.py" />
-    <entry file="file://$PROJECT_DIR$/frame_approach.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2601">
-          <caret line="156" column="54" selection-end-line="274" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/frame_approach.py" />
     <entry file="file://$PROJECT_DIR$/frame.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -580,8 +635,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/acs_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="270" lean-forward="true" selection-start-line="270" selection-end-line="270" />
+        <state relative-caret-position="240">
+          <caret line="718" column="17" selection-start-line="718" selection-start-column="17" selection-end-line="718" selection-end-column="17" />
           <folding>
             <element signature="e#87#105#0" expanded="true" />
           </folding>

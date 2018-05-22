@@ -37,7 +37,9 @@ class AcsGui:
         global att2RA, att2Dec, att2PA
         global att2Quat1, att2Quat2, att2Quat3, att2Quat4
         global att2SunRoll, att2SunPitch, att2SunYaw
-        
+
+        global slewMom, slewDur, slewAngRoll, slewAngPitch, slewAngYaw
+
         # Ephemeris Variables
         ephSunPosX = DoubleVar()
         ephSunPosY = DoubleVar()
@@ -75,6 +77,13 @@ class AcsGui:
         att2SunRoll = DoubleVar()
         att2SunPitch = DoubleVar()
         att2SunYaw = DoubleVar()
+
+        # Slew Variables
+        slewMom = DoubleVar()
+        slewDur = DoubleVar()
+        slewAngRoll = DoubleVar()
+        slewAngPitch = DoubleVar()
+        slewAngYaw = DoubleVar()
 
         # print("Tkinter theme options are:")
         # print(ttk.Style().theme_names())
@@ -143,6 +152,7 @@ class AcsGui:
         self.ephFrame.columnconfigure(0, weight=4)
 
         # Ephemeris Position Frame - Details ------------------------------
+
         self.ephPosLabel = ttk.Label(self.ephPosFrame, text="Positions (ECI, km)")
         self.ephPosLabel.grid(row=0, column=0, columnspan=3, pady=5)
 
@@ -242,7 +252,7 @@ class AcsGui:
         # Attitude 1 Celestial Frame
         self.att1CelestFrame = ttk.Frame(self.att1Frame, relief='groove')
         self.att1CelestFrame.grid(row=1, column=0, ipadx=10, ipady=5)
-        self.att1Frame.columnconfigure(2, weight=4)
+        self.att1Frame.columnconfigure(0, weight=4)
 
         # Attitude 1 Button 1 Frame
         self.att1But1Frame = ttk.Frame(self.att1Frame)
@@ -252,7 +262,7 @@ class AcsGui:
         # Attitude 1 Quaternion Frame
         self.att1QuatFrame = ttk.Frame(self.att1Frame, relief='groove')
         self.att1QuatFrame.grid(row=1, column=2, ipadx=10, ipady=5)
-        self.att1Frame.columnconfigure(0, weight=4)
+        self.att1Frame.columnconfigure(2, weight=4)
 
         # Attitude 1 Button 2 Frame
         self.att1But2Frame = ttk.Frame(self.att1Frame)
@@ -270,6 +280,7 @@ class AcsGui:
         self.att1Frame.columnconfigure(5, weight=4)
 
         # Attitude 1 Celestial Frame - Details----------------------------
+
         self.att1CelestLabel = ttk.Label(self.att1CelestFrame, text="Celestial")
         self.att1CelestLabel.grid(row=0, column=0, columnspan=2, pady=5)
 
@@ -302,6 +313,7 @@ class AcsGui:
         self.att1QuatToCelestButton.grid(row=2, column=1)
 
         # Attitude 1 Quaternion Frame - Details----------------------------
+
         self.att1QuatLabel = ttk.Label(self.att1QuatFrame, text="Quaternion")
         self.att1QuatLabel.grid(row=0, column=0, columnspan=2, pady=5)
 
@@ -340,6 +352,7 @@ class AcsGui:
         # self.att1CelestToSunAngBut.grid(row=2, column=1)
 
         # Attitude 1 Sun Angles Frame - Details---------------------------
+
         self.att1SunAngLabel = ttk.Label(self.att1SunAngFrame, text="Sun Angles")
         self.att1SunAngLabel.grid(row=0, column=0, columnspan=2, pady=5)
 
@@ -374,7 +387,7 @@ class AcsGui:
         # Attitude 2 Celestial Frame
         self.att2CelestFrame = ttk.Frame(self.att2Frame, relief='groove')
         self.att2CelestFrame.grid(row=1, column=0, ipadx=10, ipady=5)
-        self.att2Frame.columnconfigure(2, weight=4)
+        self.att2Frame.columnconfigure(0, weight=4)
 
         # Attitude 2 Button 1 Frame
         self.att2But1Frame = ttk.Frame(self.att2Frame)
@@ -384,7 +397,7 @@ class AcsGui:
         # Attitude 2 Quaternion Frame
         self.att2QuatFrame = ttk.Frame(self.att2Frame, relief='groove')
         self.att2QuatFrame.grid(row=1, column=2, ipadx=10, ipady=5)
-        self.att2Frame.columnconfigure(0, weight=4)
+        self.att2Frame.columnconfigure(2, weight=4)
 
         # Attitude 2 Button 2 Frame
         self.att2But2Frame = ttk.Frame(self.att2Frame)
@@ -402,6 +415,7 @@ class AcsGui:
         self.att2Frame.columnconfigure(5, weight=4)
 
         # Attitude 2 Celestial Frame - Details----------------------------
+
         self.att2CelestLabel = ttk.Label(self.att2CelestFrame, text="Celestial")
         self.att2CelestLabel.grid(row=0, column=0, columnspan=2, pady=5)
 
@@ -434,6 +448,7 @@ class AcsGui:
         self.att2QuatToCelestButton.grid(row=2, column=1)
 
         # Attitude 2 Quaternion Frame - Details----------------------------
+
         self.att2QuatLabel = ttk.Label(self.att2QuatFrame, text="Quaternion")
         self.att2QuatLabel.grid(row=0, column=0, columnspan=2, pady=5)
 
@@ -472,6 +487,7 @@ class AcsGui:
         # self.att2CelestToSunAngBut.grid(row=2, column=1)
 
         # Attitude 2 Sun Angles Frame - Details---------------------------
+
         self.att2SunAngLabel = ttk.Label(self.att2SunAngFrame, text="Sun Angles")
         self.att2SunAngLabel.grid(row=0, column=0, columnspan=2, pady=5)
 
@@ -494,6 +510,92 @@ class AcsGui:
         self.att2SunYawEntry.grid(row=3, column=1)
         self.att2SunYawEntry.delete(0,END)
         self.att2SunYawEntry.config(state='disable')
+
+        # Slew Section--------------------------------------------------------------------------------------------------
+
+        # Slew Top Level Layout--------------------------------------------
+
+        # Slew Title
+        self.slewLabel = ttk.Label(self.slewFrame, text="Slew")
+        self.slewLabel.grid(row=0, column=0, columnspan=5, padx=0, pady=5)
+
+        # Slew Momentum Frame
+        self.slewMomFrame = ttk.Frame(self.slewFrame, relief='groove')
+        self.slewMomFrame.grid(row=1, column=0, ipadx=10, ipady=5)
+        self.slewFrame.columnconfigure(0, weight=4)
+
+        # Calculate Slew
+        self.slewButton = ttk.Button(self.slewFrame, text="▶", width=2, command=self.slew)
+        self.slewButton.grid(row=1, column=1)
+        self.slewFrame.columnconfigure(1, weight=1)
+
+        # Slew Duration Frame
+        self.slewDurFrame = ttk.Frame(self.slewFrame, relief='groove')
+        self.slewDurFrame.grid(row=1, column=2, ipadx=10, ipady=5)
+        self.slewFrame.columnconfigure(2, weight=4)
+
+        # Slew Angles Frame
+        self.slewAngFrame = ttk.Frame(self.slewFrame, relief='groove')
+        self.slewAngFrame.grid(row=1, column=3, ipadx=10, ipady=5)
+        self.slewFrame.columnconfigure(3, weight=2)
+
+        # Clear slew
+        self.slewClearButton = ttk.Button(self.slewFrame, text="Clear", width=5, command=self.slewClear)
+        self.slewClearButton.grid(row=1, column=4, padx=10)
+        self.slewFrame.columnconfigure(4, weight=4)
+
+        # Slew Momentum Frame - Details-----------------------------------
+
+        self.slewMomLabel = ttk.Label(self.slewMomFrame, text="Total System Momentum")
+        self.slewMomLabel.grid(row=0, column=0, columnspan=2, pady=5)
+
+        self.slewMomUnitLabel = ttk.Label(self.slewMomFrame, text="(N-m-s)")
+        self.slewMomUnitLabel.grid(row=1, column=0, padx=5)
+
+        self.slewMomEntry = ttk.Entry(self.slewMomFrame, width=10, textvariable=slewMom)
+        self.slewMomEntry.grid(row=1, column=1)
+
+        # Slew Duration Frame - Details-----------------------------------
+
+        self.slewDurLabel = ttk.Label(self.slewDurFrame, text="Duration")
+        self.slewDurLabel.grid(row=0, column=0, columnspan=2, pady=5)
+
+        self.slewDurUnitLabel = ttk.Label(self.slewDurFrame, text="(min)")
+        self.slewDurUnitLabel.grid(row=1, column=0, padx=5)
+
+        self.slewDurEntry = ttk.Entry(self.slewDurFrame, width=10, textvariable=slewDur)
+        self.slewDurEntry.grid(row=1, column=1)
+        self.slewDurEntry.delete(0,END)
+        self.slewDurEntry.config(state='readonly')
+
+        # Slew Angles Frame - Details-------------------------------------
+
+        self.slewAngLabel = ttk.Label(self.slewAngFrame, text="Sun Angles")
+        self.slewAngLabel.grid(row=0, column=0, columnspan=2, pady=5)
+
+        self.slewAngRollLabel = ttk.Label(self.slewAngFrame, text="Roll")
+        self.slewAngRollLabel.grid(row=1, column=0, padx=5)
+
+        self.slewAngPitchLabel = ttk.Label(self.slewAngFrame, text="Pitch")
+        self.slewAngPitchLabel.grid(row=2, column=0, padx=5)
+
+        self.slewAngYawLabel = ttk.Label(self.slewAngFrame, text="Yaw")
+        self.slewAngYawLabel.grid(row=3, column=0, padx=5)
+
+        self.slewAngRollEntry = ttk.Entry(self.slewAngFrame, width=10, textvariable=slewAngRoll)
+        self.slewAngRollEntry.grid(row=1, column=1)
+        self.slewAngRollEntry.delete(0,END)
+        self.slewAngRollEntry.config(state='readonly')
+
+        self.slewAngPitchEntry = ttk.Entry(self.slewAngFrame, width=10, textvariable=slewAngPitch)
+        self.slewAngPitchEntry.grid(row=2, column=1)
+        self.slewAngPitchEntry.delete(0,END)
+        self.slewAngPitchEntry.config(state='readonly')
+
+        self.slewAngYawEntry = ttk.Entry(self.slewAngFrame, width=10, textvariable=slewAngYaw)
+        self.slewAngYawEntry.grid(row=3, column=1)
+        self.slewAngYawEntry.delete(0,END)
+        self.slewAngYawEntry.config(state='readonly')
 
     # End Layout----------------------------------------------------------------------------------------------------
 
@@ -611,7 +713,11 @@ class AcsGui:
     def att2Clear(self):
         print('hi')
 
+    def slew(self):
+        print('hi')
 
+    def slewClear(self):
+        print('hi')
 
 root = Tk()
 root.title('ACS Conversion Tool')
