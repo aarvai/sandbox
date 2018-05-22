@@ -119,11 +119,11 @@ class AcsGui:
 
         # Ephemeris Title
         self.ephemLabel = ttk.Label(self.ephFrame, text="Ephemeris")
-        self.ephemLabel.grid(row=0, column=0, columnspan=6, pady=5)
+        self.ephemLabel.grid(row=0, column=0, columnspan=6, pady=2)
 
         # Ephemeris Position Frame
         self.ephPosFrame = ttk.Frame(self.ephFrame, relief='groove')
-        self.ephPosFrame.grid(row=1, column=0, ipadx=10, ipady=5)
+        self.ephPosFrame.grid(row=1, column=0, ipadx=10, ipady=2)
         self.ephFrame.columnconfigure(0, weight=4)
 
         # Button to Convert Positions to Sun Vector
@@ -133,7 +133,7 @@ class AcsGui:
 
         # Ephemeris Sun Vector Frame
         self.ephSunVecFrame = ttk.Frame(self.ephFrame,relief='groove')
-        self.ephSunVecFrame.grid(row=1, column=2, ipadx=10, ipady=5)
+        self.ephSunVecFrame.grid(row=1, column=2, ipadx=10, ipady=2)
         self.ephFrame.columnconfigure(2, weight=2)
 
         # Convert sun vector to normalized sun vector
@@ -143,7 +143,7 @@ class AcsGui:
 
         # Ephemeris Sun Vector Frame
         self.ephSunVecNormFrame = ttk.Frame(self.ephFrame,relief='groove')
-        self.ephSunVecNormFrame.grid(row=1, column=4, ipady=5)
+        self.ephSunVecNormFrame.grid(row=1, column=4, ipady=2)
         self.ephFrame.columnconfigure(4, weight=3)
 
         # Clear ephem
@@ -154,7 +154,7 @@ class AcsGui:
         # Ephemeris Position Frame - Details ------------------------------
 
         self.ephPosLabel = ttk.Label(self.ephPosFrame, text="Positions (ECI, km)")
-        self.ephPosLabel.grid(row=0, column=0, columnspan=3, pady=5)
+        self.ephPosLabel.grid(row=0, column=0, columnspan=3, pady=2)
 
         self.ephPosXLabel = ttk.Label(self.ephPosFrame, text="x")
         self.ephPosXLabel.grid(row=2, column=0, padx=5)
@@ -192,7 +192,7 @@ class AcsGui:
 
         # Ephemeris Sun Vector Frame - Details-----------------------------
         self.ephSunVecLabel = ttk.Label(self.ephSunVecFrame, text="Sun Vector")
-        self.ephSunVecLabel.grid(row=0, column=0, columnspan=2, pady=5)
+        self.ephSunVecLabel.grid(row=0, column=0, columnspan=2, pady=2)
 
         self.ephSunVecUnitLabel = ttk.Label(self.ephSunVecFrame, text="(ECI, km)")
         self.ephSunVecUnitLabel.grid(row=1, column=0, columnspan=2)
@@ -218,7 +218,7 @@ class AcsGui:
         # Ephemeris Normalized Sun Vector Frame - Details------------------
 
         self.ephSunVecNormLabel = ttk.Label(self.ephSunVecNormFrame, text="Sun Vector Normalized")
-        self.ephSunVecNormLabel.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
+        self.ephSunVecNormLabel.grid(row=0, column=0, columnspan=2, padx=5, pady=2)
 
         self.ephSunVecNormUnitLabel = ttk.Label(self.ephSunVecNormFrame, text="(ECI, unitless)")
         self.ephSunVecNormUnitLabel.grid(row=1, column=0, columnspan=2)
@@ -247,31 +247,31 @@ class AcsGui:
 
         # Attitude 1 Title
         self.att1Label = ttk.Label(self.att1Frame, text="Attitude 1")
-        self.att1Label.grid(row=0, column=0, columnspan=6, padx=0, pady=5)
+        self.att1Label.grid(row=0, column=0, columnspan=6, padx=0, pady=2)
 
         # Attitude 1 Celestial Frame
         self.att1CelestFrame = ttk.Frame(self.att1Frame, relief='groove')
-        self.att1CelestFrame.grid(row=1, column=0, ipadx=10, ipady=5)
+        self.att1CelestFrame.grid(row=1, column=0, ipadx=10, ipady=2)
         self.att1Frame.columnconfigure(0, weight=4)
 
         # Attitude 1 Button 1 Frame
         self.att1But1Frame = ttk.Frame(self.att1Frame)
-        self.att1But1Frame.grid(row=1, column=1, ipady=5)
+        self.att1But1Frame.grid(row=1, column=1, ipady=2)
         self.att1Frame.columnconfigure(1, weight=1)
 
         # Attitude 1 Quaternion Frame
         self.att1QuatFrame = ttk.Frame(self.att1Frame, relief='groove')
-        self.att1QuatFrame.grid(row=1, column=2, ipadx=10, ipady=5)
+        self.att1QuatFrame.grid(row=1, column=2, ipadx=10, ipady=2)
         self.att1Frame.columnconfigure(2, weight=4)
 
         # Attitude 1 Button 2 Frame
         self.att1But2Frame = ttk.Frame(self.att1Frame)
-        self.att1But2Frame.grid(row=1, column=3, ipady=5)
+        self.att1But2Frame.grid(row=1, column=3, ipady=2)
         self.att1Frame.columnconfigure(3, weight=1)
 
         # Attitude 1 Celestial Frame
         self.att1SunAngFrame = ttk.Frame(self.att1Frame, relief='groove')
-        self.att1SunAngFrame.grid(row=1, column=4, ipadx=10, ipady=5)
+        self.att1SunAngFrame.grid(row=1, column=4, ipadx=10, ipady=2)
         self.att1Frame.columnconfigure(4, weight=2)
 
         # Clear att1
@@ -282,7 +282,7 @@ class AcsGui:
         # Attitude 1 Celestial Frame - Details----------------------------
 
         self.att1CelestLabel = ttk.Label(self.att1CelestFrame, text="Celestial")
-        self.att1CelestLabel.grid(row=0, column=0, columnspan=2, pady=5)
+        self.att1CelestLabel.grid(row=0, column=0, columnspan=2, pady=2)
 
         self.att1RALabel = ttk.Label(self.att1CelestFrame, text="RA")
         self.att1RALabel.grid(row=1, column=0, padx=5)
@@ -315,7 +315,7 @@ class AcsGui:
         # Attitude 1 Quaternion Frame - Details----------------------------
 
         self.att1QuatLabel = ttk.Label(self.att1QuatFrame, text="Quaternion")
-        self.att1QuatLabel.grid(row=0, column=0, columnspan=2, pady=5)
+        self.att1QuatLabel.grid(row=0, column=0, columnspan=2, pady=2)
 
         self.att1Quat1Label = ttk.Label(self.att1QuatFrame, text="q1")
         self.att1Quat1Label.grid(row=1, column=0, padx=5)
@@ -348,13 +348,13 @@ class AcsGui:
         self.att1CelestToSunAngBut.grid(row=1, column=1)
 
         # Button to Convert Sun Angles to Quaternion
-        # self.att1CelestToSunAngBut = ttk.Button(self.att1But2Frame, text="◀", width=2, command=self.att1SunAngToQuat)
-        # self.att1CelestToSunAngBut.grid(row=2, column=1)
+        self.att1CelestToSunAngBut = ttk.Button(self.att1But2Frame, text="◀", width=2, command=self.att1SunAngToQuat)
+        self.att1CelestToSunAngBut.grid(row=2, column=1)
 
         # Attitude 1 Sun Angles Frame - Details---------------------------
 
         self.att1SunAngLabel = ttk.Label(self.att1SunAngFrame, text="Sun Angles")
-        self.att1SunAngLabel.grid(row=0, column=0, columnspan=2, pady=5)
+        self.att1SunAngLabel.grid(row=0, column=0, columnspan=2, pady=2)
 
         self.att1SunRollLabel = ttk.Label(self.att1SunAngFrame, text="Sun Roll")
         self.att1SunRollLabel.grid(row=1, column=0, padx=5)
@@ -382,31 +382,31 @@ class AcsGui:
 
         # Attitude 2 Title
         self.att2Label = ttk.Label(self.att2Frame, text="Attitude 2")
-        self.att2Label.grid(row=0, column=0, columnspan=6, padx=0, pady=5)
+        self.att2Label.grid(row=0, column=0, columnspan=6, padx=0, pady=2)
 
         # Attitude 2 Celestial Frame
         self.att2CelestFrame = ttk.Frame(self.att2Frame, relief='groove')
-        self.att2CelestFrame.grid(row=1, column=0, ipadx=10, ipady=5)
+        self.att2CelestFrame.grid(row=1, column=0, ipadx=10, ipady=2)
         self.att2Frame.columnconfigure(0, weight=4)
 
         # Attitude 2 Button 1 Frame
         self.att2But1Frame = ttk.Frame(self.att2Frame)
-        self.att2But1Frame.grid(row=1, column=1, ipady=5)
+        self.att2But1Frame.grid(row=1, column=1, ipady=2)
         self.att2Frame.columnconfigure(1, weight=1)
 
         # Attitude 2 Quaternion Frame
         self.att2QuatFrame = ttk.Frame(self.att2Frame, relief='groove')
-        self.att2QuatFrame.grid(row=1, column=2, ipadx=10, ipady=5)
+        self.att2QuatFrame.grid(row=1, column=2, ipadx=10, ipady=2)
         self.att2Frame.columnconfigure(2, weight=4)
 
         # Attitude 2 Button 2 Frame
         self.att2But2Frame = ttk.Frame(self.att2Frame)
-        self.att2But2Frame.grid(row=1, column=3, ipady=5)
+        self.att2But2Frame.grid(row=1, column=3, ipady=2)
         self.att2Frame.columnconfigure(3, weight=1)
 
         # Attitude 2 Celestial Frame
         self.att2SunAngFrame = ttk.Frame(self.att2Frame, relief='groove')
-        self.att2SunAngFrame.grid(row=1, column=4, ipadx=10, ipady=5)
+        self.att2SunAngFrame.grid(row=1, column=4, ipadx=10, ipady=2)
         self.att2Frame.columnconfigure(4, weight=2)
 
         # Clear att2
@@ -417,7 +417,7 @@ class AcsGui:
         # Attitude 2 Celestial Frame - Details----------------------------
 
         self.att2CelestLabel = ttk.Label(self.att2CelestFrame, text="Celestial")
-        self.att2CelestLabel.grid(row=0, column=0, columnspan=2, pady=5)
+        self.att2CelestLabel.grid(row=0, column=0, columnspan=2, pady=2)
 
         self.att2RALabel = ttk.Label(self.att2CelestFrame, text="RA")
         self.att2RALabel.grid(row=1, column=0, padx=5)
@@ -450,7 +450,7 @@ class AcsGui:
         # Attitude 2 Quaternion Frame - Details----------------------------
 
         self.att2QuatLabel = ttk.Label(self.att2QuatFrame, text="Quaternion")
-        self.att2QuatLabel.grid(row=0, column=0, columnspan=2, pady=5)
+        self.att2QuatLabel.grid(row=0, column=0, columnspan=2, pady=2)
 
         self.att2Quat1Label = ttk.Label(self.att2QuatFrame, text="q1")
         self.att2Quat1Label.grid(row=1, column=0, padx=5)
@@ -483,13 +483,13 @@ class AcsGui:
         self.att2CelestToSunAngBut.grid(row=1, column=1)
 
         # Button to Convert Sun Angles to Quaternion
-        # self.att2CelestToSunAngBut = ttk.Button(self.att2But2Frame, text="◀", width=2, command=self.att2SunAngToQuat)
-        # self.att2CelestToSunAngBut.grid(row=2, column=1)
+        self.att2CelestToSunAngBut = ttk.Button(self.att2But2Frame, text="◀", width=2, command=self.att2SunAngToQuat)
+        self.att2CelestToSunAngBut.grid(row=2, column=1)
 
         # Attitude 2 Sun Angles Frame - Details---------------------------
 
         self.att2SunAngLabel = ttk.Label(self.att2SunAngFrame, text="Sun Angles")
-        self.att2SunAngLabel.grid(row=0, column=0, columnspan=2, pady=5)
+        self.att2SunAngLabel.grid(row=0, column=0, columnspan=2, pady=2)
 
         self.att2SunRollLabel = ttk.Label(self.att2SunAngFrame, text="Sun Roll")
         self.att2SunRollLabel.grid(row=1, column=0, padx=5)
@@ -517,11 +517,11 @@ class AcsGui:
 
         # Slew Title
         self.slewLabel = ttk.Label(self.slewFrame, text="Slew")
-        self.slewLabel.grid(row=0, column=0, columnspan=5, padx=0, pady=5)
+        self.slewLabel.grid(row=0, column=0, columnspan=5, padx=0, pady=2)
 
         # Slew Momentum Frame
         self.slewMomFrame = ttk.Frame(self.slewFrame, relief='groove')
-        self.slewMomFrame.grid(row=1, column=0, ipadx=10, ipady=5)
+        self.slewMomFrame.grid(row=1, column=0, ipadx=10, ipady=2)
         self.slewFrame.columnconfigure(0, weight=4)
 
         # Calculate Slew
@@ -531,12 +531,12 @@ class AcsGui:
 
         # Slew Duration Frame
         self.slewDurFrame = ttk.Frame(self.slewFrame, relief='groove')
-        self.slewDurFrame.grid(row=1, column=2, ipadx=10, ipady=5)
+        self.slewDurFrame.grid(row=1, column=2, ipadx=10, ipady=2)
         self.slewFrame.columnconfigure(2, weight=4)
 
         # Slew Angles Frame
         self.slewAngFrame = ttk.Frame(self.slewFrame, relief='groove')
-        self.slewAngFrame.grid(row=1, column=3, ipadx=10, ipady=5)
+        self.slewAngFrame.grid(row=1, column=3, ipadx=10, ipady=2)
         self.slewFrame.columnconfigure(3, weight=2)
 
         # Clear slew
@@ -547,7 +547,7 @@ class AcsGui:
         # Slew Momentum Frame - Details-----------------------------------
 
         self.slewMomLabel = ttk.Label(self.slewMomFrame, text="Total System Momentum")
-        self.slewMomLabel.grid(row=0, column=0, columnspan=2, pady=5)
+        self.slewMomLabel.grid(row=0, column=0, columnspan=2, padx=5, pady=2)
 
         self.slewMomUnitLabel = ttk.Label(self.slewMomFrame, text="(N-m-s)")
         self.slewMomUnitLabel.grid(row=1, column=0, padx=5)
@@ -558,7 +558,7 @@ class AcsGui:
         # Slew Duration Frame - Details-----------------------------------
 
         self.slewDurLabel = ttk.Label(self.slewDurFrame, text="Duration")
-        self.slewDurLabel.grid(row=0, column=0, columnspan=2, pady=5)
+        self.slewDurLabel.grid(row=0, column=0, columnspan=2, pady=2)
 
         self.slewDurUnitLabel = ttk.Label(self.slewDurFrame, text="(min)")
         self.slewDurUnitLabel.grid(row=1, column=0, padx=5)
@@ -571,7 +571,7 @@ class AcsGui:
         # Slew Angles Frame - Details-------------------------------------
 
         self.slewAngLabel = ttk.Label(self.slewAngFrame, text="Sun Angles")
-        self.slewAngLabel.grid(row=0, column=0, columnspan=2, pady=5)
+        self.slewAngLabel.grid(row=0, column=0, columnspan=2, pady=2)
 
         self.slewAngRollLabel = ttk.Label(self.slewAngFrame, text="Roll")
         self.slewAngRollLabel.grid(row=1, column=0, padx=5)
