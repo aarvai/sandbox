@@ -71,10 +71,10 @@ class AcsGui:
 
         # Define top-level frames
         self.ephFrame = ttk.Frame(master, relief='ridge')
-        self.ephFrame.grid(row=1, column=0, padx=10, pady=10, ipadx=10, ipady=10, sticky=E+W)
+        self.ephFrame.grid(row=1, column=0, padx=10, pady=2, ipadx=20, ipady=2, sticky=E+W)
 
         self.att1Frame = ttk.Frame(master, relief='ridge')
-        self.att1Frame.grid(row=2, column=0, padx=10, pady=10, ipadx=10, ipady=10, sticky=E+W)
+        self.att1Frame.grid(row=2, column=0, padx=10, pady=2, ipadx=20, ipady=2, sticky=E+W)
 
         # Ephemeris Section---------------------------------------------------------------------------------------------
 
@@ -82,11 +82,11 @@ class AcsGui:
 
         # Ephemeris Title
         self.ephemLabel = ttk.Label(self.ephFrame, text="Ephemeris")
-        self.ephemLabel.grid(row=0, column=0, columnspan=3, padx=280, pady=10)
+        self.ephemLabel.grid(row=0, column=0, columnspan=6, pady=5)
 
         # Ephemeris Position Frame
         self.ephPosFrame = ttk.Frame(self.ephFrame, relief='groove')
-        self.ephPosFrame.grid(row=1, column=0, ipadx=10, ipady=10)
+        self.ephPosFrame.grid(row=1, column=0, ipadx=10, ipady=5)
         self.ephFrame.columnconfigure(0, weight=4)
 
         # Button to Convert Positions to Sun Vector
@@ -96,7 +96,7 @@ class AcsGui:
 
         # Ephemeris Sun Vector Frame
         self.ephSunVecFrame = ttk.Frame(self.ephFrame,relief='groove')
-        self.ephSunVecFrame.grid(row=1, column=2, ipadx=10, ipady=10)
+        self.ephSunVecFrame.grid(row=1, column=2, ipadx=10, ipady=5)
         self.ephFrame.columnconfigure(2, weight=2)
 
         # Convert sun vector to normalized sun vector
@@ -106,7 +106,7 @@ class AcsGui:
 
         # Ephemeris Sun Vector Frame
         self.ephSunVecNormFrame = ttk.Frame(self.ephFrame,relief='groove')
-        self.ephSunVecNormFrame.grid(row=1, column=4, ipady=10)
+        self.ephSunVecNormFrame.grid(row=1, column=4, ipady=5)
         self.ephFrame.columnconfigure(4, weight=3)
 
         # Clear ephem
@@ -209,31 +209,31 @@ class AcsGui:
 
         # Attitude 1 Title
         self.att1Label = ttk.Label(self.att1Frame, text="Attitude 1")
-        self.att1Label.grid(row=0, column=0, columnspan=3, padx=280, pady=10)
+        self.att1Label.grid(row=0, column=0, columnspan=6, padx=0, pady=5)
 
         # Attitude 1 Celestial Frame
         self.att1CelestFrame = ttk.Frame(self.att1Frame, relief='groove')
-        self.att1CelestFrame.grid(row=1, column=0, ipadx=10, ipady=10)
-        self.att1Frame.columnconfigure(2, weight=2)
+        self.att1CelestFrame.grid(row=1, column=0, ipadx=10, ipady=5)
+        self.att1Frame.columnconfigure(2, weight=4)
 
         # Attitude 1 Button 1 Frame
         self.att1But1Frame = ttk.Frame(self.att1Frame)
-        self.att1But1Frame.grid(row=1, column=1, ipadx=10, ipady=10)
-        self.att1Frame.columnconfigure(1, weight=4)
+        self.att1But1Frame.grid(row=1, column=1, ipady=5)
+        self.att1Frame.columnconfigure(1, weight=1)
 
         # Attitude 1 Quaternion Frame
         self.att1QuatFrame = ttk.Frame(self.att1Frame, relief='groove')
-        self.att1QuatFrame.grid(row=1, column=2, ipadx=10, ipady=10)
+        self.att1QuatFrame.grid(row=1, column=2, ipadx=10, ipady=5)
         self.att1Frame.columnconfigure(0, weight=4)
 
         # Attitude 1 Button 2 Frame
         self.att1But2Frame = ttk.Frame(self.att1Frame)
-        self.att1But2Frame.grid(row=1, column=3, ipadx=10, ipady=10)
-        self.att1Frame.columnconfigure(3, weight=4)
+        self.att1But2Frame.grid(row=1, column=3, ipady=5)
+        self.att1Frame.columnconfigure(3, weight=1)
 
         # Attitude 1 Celestial Frame
         self.att1SunAngFrame = ttk.Frame(self.att1Frame, relief='groove')
-        self.att1SunAngFrame.grid(row=1, column=4, ipadx=10, ipady=10)
+        self.att1SunAngFrame.grid(row=1, column=4, ipadx=10, ipady=5)
         self.att1Frame.columnconfigure(4, weight=2)
 
         # Clear att1
@@ -303,13 +303,13 @@ class AcsGui:
 
         # Attitude 1 Button 2 Frame - Details-----------------------------
 
-        # Button to Convert Celestial to Sun Angles
+        # Button to Convert Quaternion to Sun Angles
         self.att1CelestToSunAngBut = ttk.Button(self.att1But2Frame, text="▶", width=2, command=self.att1QuatToSunAng)
         self.att1CelestToSunAngBut.grid(row=1, column=1)
 
-        # Button to Convert Sun Angles to Celestial
-        self.att1CelestToSunAngBut = ttk.Button(self.att1But2Frame, text="◀", width=2, command=self.att1SunAngToQuat)
-        self.att1CelestToSunAngBut.grid(row=2, column=1)
+        # Button to Convert Sun Angles to Quaternion
+        # self.att1CelestToSunAngBut = ttk.Button(self.att1But2Frame, text="◀", width=2, command=self.att1SunAngToQuat)
+        # self.att1CelestToSunAngBut.grid(row=2, column=1)
 
         # Attitude 1 Sun Angles Frame - Details---------------------------
         self.att1SunAngLabel = ttk.Label(self.att1SunAngFrame, text="Sun Angles")
