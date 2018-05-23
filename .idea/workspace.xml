@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f7c94c6-70ea-4153-9a2b-1849d03d0397" name="Default" comment="Fixed padding.">
+    <list default="true" id="2f7c94c6-70ea-4153-9a2b-1849d03d0397" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/acs_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/acs_gui.py" afterDir="false" />
     </list>
@@ -35,8 +35,8 @@
       <file leaf-file-name="acs_gui.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/acs_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="784" column="29" selection-start-line="784" selection-start-column="29" selection-end-line="784" selection-end-column="29" />
+            <state relative-caret-position="221">
+              <caret line="894" column="17" selection-start-line="894" selection-start-column="17" selection-end-line="894" selection-end-column="17" />
               <folding>
                 <element signature="e#87#105#0" expanded="true" />
               </folding>
@@ -55,17 +55,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>#</find>
-      <find>,column</find>
-      <find>sticky=</find>
-      <find>ttk.Frame</find>
-      <find>Tk.</find>
       <find>_</find>
       <find>sticky</find>
       <find>padx</find>
       <find>ephem</find>
       <find>eph</find>
-      <find>ephSunVec</find>
       <find>Entry</find>
       <find>master,</find>
       <find>='disable</find>
@@ -73,7 +67,6 @@
       <find>pady=</find>
       <find>1</find>
       <find>Celest</find>
-      <find>att2</find>
       <find>slewSunAng</find>
       <find>Mom</find>
       <find>att2SunAng</find>
@@ -85,11 +78,15 @@
       <find>print</find>
       <find>att1</find>
       <find>.config(state='Normal')</find>
+      <find>slew</find>
+      <find>Dur</find>
+      <find>att2</find>
+      <find>ephSun</find>
+      <find>ephSunVec</find>
+      <find>ECI</find>
+      <find>Quat</find>
     </findStrings>
     <replaceStrings>
-      <replace>jwst</replace>
-      <replace>ephSunVec</replace>
-      <replace>ephSunVecNorm</replace>
       <replace>ephJwstPos</replace>
       <replace>.config(state='Normal')</replace>
       <replace>ephPosFrame</replace>
@@ -116,6 +113,10 @@
       <replace>.delete(0, END)</replace>
       <replace>att2</replace>
       <replace>delete(0, END)</replace>
+      <replace>vectors</replace>
+      <replace>Eci</replace>
+      <replace>vectorsEci</replace>
+      <replace>J</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -138,8 +139,8 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-14" />
-    <option name="width" value="2585" />
-    <option name="height" value="774" />
+    <option name="width" value="2587" />
+    <option name="height" value="776" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -393,7 +394,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527017996866</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Coded Att 1, Att 2, and Slew &quot;Clear&quot; commands.">
+      <created>1527020455747</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1527020455747</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -402,7 +410,6 @@
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23581682" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.31784007" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="8" />
@@ -411,6 +418,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.45507246" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39941263" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.31784007" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="10" />
@@ -437,14 +445,15 @@
     <MESSAGE value="Added Att1 and Att2 variables to global definition." />
     <MESSAGE value="Added Slew Frame." />
     <MESSAGE value="Fixed padding." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed padding." />
+    <MESSAGE value="Coded Att 1, Att 2, and Slew &quot;Clear&quot; commands." />
+    <option name="LAST_COMMIT_MESSAGE" value="Coded Att 1, Att 2, and Slew &quot;Clear&quot; commands." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/acs_gui.py</url>
-          <line>767</line>
+          <line>863</line>
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="1" />
@@ -653,8 +662,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/acs_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="784" column="29" selection-start-line="784" selection-start-column="29" selection-end-line="784" selection-end-column="29" />
+        <state relative-caret-position="221">
+          <caret line="894" column="17" selection-start-line="894" selection-start-column="17" selection-end-line="894" selection-end-column="17" />
           <folding>
             <element signature="e#87#105#0" expanded="true" />
           </folding>

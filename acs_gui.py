@@ -40,6 +40,9 @@ class AcsGui:
 
         global slewMom, slewDur, slewAngRoll, slewAngPitch, slewAngYaw
 
+        global vectorsEciX, vectorsEciY, vectorsEciZ
+        global vectorsJ1, vectorsJ2, vectorsJ3
+
         # Ephemeris Variables
         ephSunPosX = DoubleVar()
         ephSunPosY = DoubleVar()
@@ -85,6 +88,14 @@ class AcsGui:
         slewAngPitch = DoubleVar()
         slewAngYaw = DoubleVar()
 
+        # Vectors Variables
+        vectorsEciX = DoubleVar()
+        vectorsEciY = DoubleVar()
+        vectorsEciZ = DoubleVar()
+        vectorsJ1 = DoubleVar()
+        vectorsJ2 = DoubleVar()
+        vectorsJ3 = DoubleVar()
+
         # print("Tkinter theme options are:")
         # print(ttk.Style().theme_names())
         # print("Current Tkinter theme:")
@@ -112,6 +123,9 @@ class AcsGui:
 
         self.slewFrame = ttk.Frame(master, relief='ridge')
         self.slewFrame.grid(row=4, column=0, padx=10, pady=2, ipadx=20, ipady=2, sticky=E+W)
+
+        self.vectorsFrame = ttk.Frame(master, relief='ridge')
+        self.vectorsFrame.grid(row=5, column=0, padx=10, pady=2, ipadx=20, ipady=2, sticky=E+W)
 
         # Ephemeris Section---------------------------------------------------------------------------------------------
 
@@ -597,6 +611,88 @@ class AcsGui:
         self.slewAngYawEntry.delete(0,END)
         self.slewAngYawEntry.config(state='readonly')
 
+        # Vectors Section-----------------------------------------------------------------------------------------------
+
+        # Vectors Top Level Layout--------------------------------------------
+
+        # Vectors Title
+        self.vectorsLabel = ttk.Label(self.vectorsFrame, text="Vectors")
+        self.vectorsLabel.grid(row=0, column=0, columnspan=5, padx=0, pady=2)
+
+        # Vectors ECI Frame
+        self.vectorsEciFrame = ttk.Frame(self.vectorsFrame, relief='groove')
+        self.vectorsEciFrame.grid(row=1, column=0, ipadx=10, ipady=2)
+        self.vectorsFrame.columnconfigure(0, weight=4)
+
+        # Vectors Button 1 Frame
+        self.vectorsBut1Frame = ttk.Frame(self.vectorsFrame)
+        self.vectorsBut1Frame.grid(row=1, column=1, ipady=2)
+        self.vectorsFrame.columnconfigure(1, weight=1)
+
+        # Vectors J Frame
+        self.vectorsJFrame = ttk.Frame(self.vectorsFrame, relief='groove')
+        self.vectorsJFrame.grid(row=1, column=2, ipadx=10, ipady=2)
+        self.vectorsFrame.columnconfigure(2, weight=4)
+
+        # Clear vectors
+        self.vectorsClearButton = ttk.Button(self.vectorsFrame, text="Clear", width=5, command=self.vectorsClear)
+        self.vectorsClearButton.grid(row=1, column=3, padx=10)
+        self.vectorsFrame.columnconfigure(3, weight=4)
+
+        # Vectors ECI Vector Frame - Details------------------------------
+        self.vectorsEciLabel = ttk.Label(self.vectorsEciFrame, text="ECI")
+        self.vectorsEciLabel.grid(row=0, column=0, columnspan=2, pady=2)
+
+        self.vectorsEciXLabel = ttk.Label(self.vectorsEciFrame, text="x")
+        self.vectorsEciXLabel.grid(row=1, column=0, padx=5)
+
+        self.vectorsEciYLabel = ttk.Label(self.vectorsEciFrame, text="y")
+        self.vectorsEciYLabel.grid(row=2, column=0, padx=5)
+
+        self.vectorsEciZLabel = ttk.Label(self.vectorsEciFrame, text="z")
+        self.vectorsEciZLabel.grid(row=3, column=0, padx=5)
+
+        self.vectorsEciXEntry = ttk.Entry(self.vectorsEciFrame, width=10, textvariable=vectorsEciX)
+        self.vectorsEciXEntry.grid(row=1, column=1)
+
+        self.vectorsEciYEntry = ttk.Entry(self.vectorsEciFrame, width=10, textvariable=vectorsEciY)
+        self.vectorsEciYEntry.grid(row=2, column=1)
+
+        self.vectorsEciZEntry = ttk.Entry(self.vectorsEciFrame, width=10, textvariable=vectorsEciZ)
+        self.vectorsEciZEntry.grid(row=3, column=1)
+
+        # Vectors Button 1 Frame - Details--------------------------------
+
+        # Button to Convert ECI Frame to J Frame
+        self.vectorsEciToJButton = ttk.Button(self.vectorsBut1Frame, text="▶", width=2, command=self.vectorsEciToJ)
+        self.vectorsEciToJButton.grid(row=1, column=1)
+
+        # Button to Convert J Frame to ECI Frame
+        self.vectorsJToEciButton = ttk.Button(self.vectorsBut1Frame, text="◀", width=2, command=self.vectorsJToEci)
+        self.vectorsJToEciButton.grid(row=2, column=1)
+
+        # Vectors J Vector Frame - Details------------------------------
+        self.vectorsJLabel = ttk.Label(self.vectorsJFrame, text="J")
+        self.vectorsJLabel.grid(row=0, column=0, columnspan=2, pady=2)
+
+        self.vectorsJXLabel = ttk.Label(self.vectorsJFrame, text="J1")
+        self.vectorsJXLabel.grid(row=1, column=0, padx=5)
+
+        self.vectorsJYLabel = ttk.Label(self.vectorsJFrame, text="J2")
+        self.vectorsJYLabel.grid(row=2, column=0, padx=5)
+
+        self.vectorsJZLabel = ttk.Label(self.vectorsJFrame, text="J3")
+        self.vectorsJZLabel.grid(row=3, column=0, padx=5)
+
+        self.vectorsJXEntry = ttk.Entry(self.vectorsJFrame, width=10, textvariable=vectorsJ1)
+        self.vectorsJXEntry.grid(row=1, column=1)
+
+        self.vectorsJYEntry = ttk.Entry(self.vectorsJFrame, width=10, textvariable=vectorsJ2)
+        self.vectorsJYEntry.grid(row=2, column=1)
+
+        self.vectorsJZEntry = ttk.Entry(self.vectorsJFrame, width=10, textvariable=vectorsJ3)
+        self.vectorsJZEntry.grid(row=3, column=1)
+
     # End Layout----------------------------------------------------------------------------------------------------
 
     def ephPosToVec(self):
@@ -792,6 +888,15 @@ class AcsGui:
         self.slewAngRollEntry.config(state='readonly')
         self.slewAngPitchEntry.config(state='readonly')
         self.slewAngYawEntry.config(state='readonly')
+
+    def vectorsEciToJ(self):
+        print('hi')
+
+    def vectorsJToEci(self):
+        print('hi')
+
+    def vectorsClear(self):
+        print('hi')
 
 root = Tk()
 root.title('ACS Conversion Tool')
