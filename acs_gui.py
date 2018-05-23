@@ -675,23 +675,23 @@ class AcsGui:
         self.vectorsJLabel = ttk.Label(self.vectorsJFrame, text="J")
         self.vectorsJLabel.grid(row=0, column=0, columnspan=2, pady=2)
 
-        self.vectorsJXLabel = ttk.Label(self.vectorsJFrame, text="J1")
-        self.vectorsJXLabel.grid(row=1, column=0, padx=5)
+        self.vectorsJ1Label = ttk.Label(self.vectorsJFrame, text="J1")
+        self.vectorsJ1Label.grid(row=1, column=0, padx=5)
 
-        self.vectorsJYLabel = ttk.Label(self.vectorsJFrame, text="J2")
-        self.vectorsJYLabel.grid(row=2, column=0, padx=5)
+        self.vectorsJ2Label = ttk.Label(self.vectorsJFrame, text="J2")
+        self.vectorsJ2Label.grid(row=2, column=0, padx=5)
 
-        self.vectorsJZLabel = ttk.Label(self.vectorsJFrame, text="J3")
-        self.vectorsJZLabel.grid(row=3, column=0, padx=5)
+        self.vectorsJ3Label = ttk.Label(self.vectorsJFrame, text="J3")
+        self.vectorsJ3Label.grid(row=3, column=0, padx=5)
 
-        self.vectorsJXEntry = ttk.Entry(self.vectorsJFrame, width=10, textvariable=vectorsJ1)
-        self.vectorsJXEntry.grid(row=1, column=1)
+        self.vectorsJ1Entry = ttk.Entry(self.vectorsJFrame, width=10, textvariable=vectorsJ1)
+        self.vectorsJ1Entry.grid(row=1, column=1)
 
-        self.vectorsJYEntry = ttk.Entry(self.vectorsJFrame, width=10, textvariable=vectorsJ2)
-        self.vectorsJYEntry.grid(row=2, column=1)
+        self.vectorsJ2Entry = ttk.Entry(self.vectorsJFrame, width=10, textvariable=vectorsJ2)
+        self.vectorsJ2Entry.grid(row=2, column=1)
 
-        self.vectorsJZEntry = ttk.Entry(self.vectorsJFrame, width=10, textvariable=vectorsJ3)
-        self.vectorsJZEntry.grid(row=3, column=1)
+        self.vectorsJ3Entry = ttk.Entry(self.vectorsJFrame, width=10, textvariable=vectorsJ3)
+        self.vectorsJ3Entry.grid(row=3, column=1)
 
     # End Layout----------------------------------------------------------------------------------------------------
 
@@ -896,7 +896,25 @@ class AcsGui:
         print('hi')
 
     def vectorsClear(self):
-        print('hi')
+
+        # Re-enable all Vector values
+        self.vectorsEciXEntry.config(state='Normal')
+        self.vectorsEciYEntry.config(state='Normal')
+        self.vectorsEciZEntry.config(state='Normal')
+        self.vectorsJ1Entry.config(state='Normal')
+        self.vectorsJ2Entry.config(state='Normal')
+        self.vectorsJ3Entry.config(state='Normal')
+
+        # Clear all Slew values
+        self.vectorsEciXEntry.delete(0, END)
+        self.vectorsEciYEntry.delete(0, END)
+        self.vectorsEciZEntry.delete(0, END)
+        self.vectorsJ1Entry.delete(0, END)
+        self.vectorsJ2Entry.delete(0, END)
+        self.vectorsJ3Entry.delete(0, END)
+
+        # Set the focus to the first Vectors value
+        self.vectorsEciXEntry.focus_set()
 
 root = Tk()
 root.title('ACS Conversion Tool')
